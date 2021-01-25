@@ -1,8 +1,9 @@
 package datos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Libro {
+public class Libro implements Comparable<Libro>, Serializable {
 
     private String nombreLibro;
     private Autor autorLibro;
@@ -61,5 +62,10 @@ public class Libro {
     @Override
     public String toString() {
         return nombreLibro + ", autor: " + autorLibro.getNombrePersona() + ", género: " + generoLibro + ", precio: " + String.valueOf(precioLibro);
+    }
+
+    @Override
+    public int compareTo(Libro libro) {
+        return nombreLibro.compareTo(libro.nombreLibro);
     }
 }

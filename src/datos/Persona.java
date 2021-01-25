@@ -1,6 +1,8 @@
 package datos;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Comparable<Persona>, Serializable {
 
     private String nombrePersona;
     private int edadPersona;
@@ -39,5 +41,10 @@ public class Persona {
     @Override
     public String toString() {
         return nombrePersona + ", edad: " + edadPersona + ", sexo: " + sexoPersona;
+    }
+
+    @Override
+    public int compareTo(Persona persona) {
+        return nombrePersona.compareTo(persona.nombrePersona);
     }
 }

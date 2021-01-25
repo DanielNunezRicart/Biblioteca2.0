@@ -1,8 +1,9 @@
 package datos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Autor extends Persona{
+public class Autor extends Persona implements Serializable {
 
     private String paisOrigen;
     private ArrayList<Libro> librosPublicados;
