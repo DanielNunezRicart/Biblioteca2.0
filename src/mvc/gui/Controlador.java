@@ -1,5 +1,7 @@
 package mvc.gui;
 
+import datos.Autor;
+import dialogos.DialogoNuevoAutor;
 import mvc.Modelo;
 
 import javax.swing.*;
@@ -87,12 +89,28 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 case "Idiomas":
                     seleccionarIdioma();
                     break;
+
+                case "NuevoAutor":
+                    nuevoAutor();
+                    break;
             }
 
         }
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    private void nuevoAutor() {
+        DialogoNuevoAutor d = new DialogoNuevoAutor(modelo);
+        listarAutores();
+    }
+
+    private void listarAutores() {
+        vista.dlmAutores.clear();
+        for (Autor autor : modelo.getAutores()) {
+            vista.dlmAutores.addElement(autor);
+        }
     }
 
     private void seleccionarIdioma() {

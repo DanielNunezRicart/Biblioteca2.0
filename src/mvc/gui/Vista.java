@@ -2,6 +2,10 @@ package mvc.gui;
 
 import javax.swing.*;
 import java.awt.*;
+
+import datos.Autor;
+import datos.Libro;
+import datos.Personaje;
 import layouts.WrapLayout;
 
 public class Vista {
@@ -48,6 +52,12 @@ public class Vista {
     JLabel txtLibrosPersonaje;
     JList listaPersonajes;
     JList listaLibrosPersonaje;
+    DefaultListModel<Autor> dlmAutores;
+    DefaultListModel<Libro> dlmLibrosAutor;
+    DefaultListModel<Libro> dlmLibros;
+    DefaultListModel<Personaje> dlmPersonajesLibro;
+    DefaultListModel<Personaje> dlmPersonajes;
+    DefaultListModel<Libro> dlmLibrosPersonaje;
 
     public Vista() {
         //Creamos el JFrame
@@ -58,6 +68,9 @@ public class Vista {
         //Iniciamos los componentes gráficos, creamos menús, ...
         initLayout();
 
+        //Asignamos los modelos
+        asignarModelos();
+
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -65,5 +78,26 @@ public class Vista {
 
     public void initLayout() {
         panelMenu.setLayout(new WrapLayout(FlowLayout.LEADING, 3, 3));
+    }
+
+    /**
+     * Método que inicializa los DefaultListModel y se los asigna a sus JList correspondientes
+     */
+    private void asignarModelos(){
+        //Inicializamos los dlm
+        dlmAutores = new DefaultListModel<>();
+        dlmLibrosAutor = new DefaultListModel<>();
+        dlmLibros = new DefaultListModel<>();
+        dlmPersonajesLibro = new DefaultListModel<>();
+        dlmPersonajes = new DefaultListModel<>();
+        dlmLibrosPersonaje = new DefaultListModel<>();
+
+        //Se los asignamos a las listas
+        listaAutores.setModel(dlmAutores);
+        listaLibrosAutores.setModel(dlmLibrosAutor);
+        listaLibros.setModel(dlmLibros);
+        listaPersonajesLibro.setModel(dlmPersonajesLibro);
+        listaPersonajes.setModel(dlmPersonajes);
+        listaLibrosPersonaje.setModel(dlmLibrosPersonaje);
     }
 }

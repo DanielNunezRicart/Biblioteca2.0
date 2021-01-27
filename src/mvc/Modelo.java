@@ -3,8 +3,10 @@ package mvc;
 import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
+import util.Util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Modelo {
@@ -40,5 +42,35 @@ public class Modelo {
         personajes = (HashSet<Personaje>) deserializador.readObject();
 
         deserializador.close();
+    }
+
+    public void nuevoAutor(Autor autor) {
+        if (!comprobarAutorExiste(autor)) {
+            autores.add(autor);
+        } else {
+            Util.mensajeError("¡El autor que intenta introducir ya existe!");
+        }
+    }
+
+    /**
+     * Método que comprueba si el nombre del autor introducido por parámetro el el mismo
+     * que el de alguno de los autores ya existentes
+     * @param autor Objeto autor para comprobar el nombre
+     * @return boolean False si no existe y True si existe
+     */
+    private boolean comprobarAutorExiste(Autor autor) {
+        boolean existe = false;
+
+        for (Autor a : autores) {
+            if (a.getNombrePersona().toLowerCase().equals(autor.getNombrePersona().toLowerCase())) {
+                existe = true;
+            }
+        }
+
+        return existe;
+    }
+
+    public HashSet<Autor> getAutores() {
+        return autores;
     }
 }
