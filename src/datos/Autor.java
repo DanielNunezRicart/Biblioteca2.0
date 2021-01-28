@@ -30,6 +30,10 @@ public class Autor extends Persona implements Serializable {
         this.librosPublicados = librosPublicados;
     }
 
+    public void addLibro(Libro libro) {
+        librosPublicados.add(libro);
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", país de origen: " + paisOrigen;

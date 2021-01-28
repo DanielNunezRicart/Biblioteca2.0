@@ -1,14 +1,17 @@
 package datos;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class Personaje extends Persona{
 
     private String rolPersonaje;
-    private Libro libroPersonaje;
+    private HashSet<Libro> librosPersonaje;
 
-    public Personaje(String nombrePersona, int edadPersona, String sexoPersona, String rolPersonaje, Libro libroPersonaje) {
+    public Personaje(String nombrePersona, int edadPersona, String sexoPersona, String rolPersonaje) {
         super(nombrePersona, edadPersona, sexoPersona);
         this.rolPersonaje = rolPersonaje;
-        this.libroPersonaje = libroPersonaje;
+        librosPersonaje = new HashSet<>();
     }
 
     public String getRolPersonaje() {
@@ -19,16 +22,16 @@ public class Personaje extends Persona{
         this.rolPersonaje = rolPersonaje;
     }
 
-    public Libro getLibroPersonaje() {
-        return libroPersonaje;
+    public HashSet<Libro> getLibroPersonaje() {
+        return librosPersonaje;
     }
 
-    public void setLibroPersonaje(Libro libroPersonaje) {
-        this.libroPersonaje = libroPersonaje;
+    public void setLibroPersonaje(HashSet<Libro> libroPersonaje) {
+        librosPersonaje = libroPersonaje;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", rol: " + rolPersonaje + "libro: " + libroPersonaje.getNombreLibro();
+        return super.toString() + ", rol: " + rolPersonaje;
     }
 }

@@ -1,22 +1,26 @@
 package datos;
 
+import javax.swing.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Libro implements Comparable<Libro>, Serializable {
 
     private String nombreLibro;
     private Autor autorLibro;
-    private String generoLibro;
+    private LocalDate fechaPublicacion;
     private float precioLibro;
     private ArrayList<Personaje> personajesLibro;
+    private ImageIcon portada;
 
-    public Libro(String nombreLibro, Autor autorLibro, String generoLibro, float precioLibro, ArrayList<Personaje> personajesLibro) {
+    public Libro(String nombreLibro, Autor autorLibro, LocalDate fechaPublicacion, float precioLibro, ImageIcon portada) {
         this.nombreLibro = nombreLibro;
         this.autorLibro = autorLibro;
-        this.generoLibro = generoLibro;
+        this.fechaPublicacion = fechaPublicacion;
         this.precioLibro = precioLibro;
-        this.personajesLibro = personajesLibro;
+        personajesLibro = new ArrayList<>();
+        this.portada = portada;
     }
 
     public String getNombreLibro() {
@@ -35,12 +39,12 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.autorLibro = autorLibro;
     }
 
-    public String getGeneroLibro() {
-        return generoLibro;
+    public LocalDate getFechaPublicacion() {
+        return fechaPublicacion;
     }
 
-    public void setGeneroLibro(String generoLibro) {
-        this.generoLibro = generoLibro;
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public float getPrecioLibro() {
@@ -59,9 +63,13 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.personajesLibro = personajesLibro;
     }
 
+    public ImageIcon getPortada() {return portada;}
+
+    public void setPortada(ImageIcon portada) {this.portada = portada;}
+
     @Override
     public String toString() {
-        return nombreLibro + ", autor: " + autorLibro.getNombrePersona() + ", género: " + generoLibro + ", precio: " + String.valueOf(precioLibro);
+        return nombreLibro + ", autor: " + autorLibro.getNombrePersona() + ", publicado: " + fechaPublicacion.toString() + ", precio: " + precioLibro;
     }
 
     @Override

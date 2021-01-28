@@ -1,7 +1,9 @@
 package mvc.gui;
 
 import datos.Autor;
+import datos.Libro;
 import dialogos.DialogoNuevoAutor;
+import dialogos.DialogoNuevoLibro;
 import mvc.Modelo;
 
 import javax.swing.*;
@@ -93,6 +95,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 case "NuevoAutor":
                     nuevoAutor();
                     break;
+
+                case "NuevoLibro":
+                    nuevoLibro();
+                    break;
             }
 
         }
@@ -101,11 +107,45 @@ public class Controlador implements ActionListener, ListSelectionListener {
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
     }
 
+    /**
+     * Crea un diálogo para añadir un libro nuevo y refresca los elementos en los que aparecen libros
+     */
+    private void nuevoLibro() {
+        DialogoNuevoLibro d = new DialogoNuevoLibro(modelo);
+        listarLibros();
+    }
+
+    private void listarLibros() {
+        vista.dlmLibros.clear();
+        for (Libro libro : modelo.getLibros()) {
+            vista.dlmLibros.addElement(libro);
+        }
+    }
+
+    /**
+     * Crea un diálogo que permite añadir un nuevo autor y refresca los elementos en los que aparecen
+     */
     private void nuevoAutor() {
         DialogoNuevoAutor d = new DialogoNuevoAutor(modelo);
         listarAutores();
     }
 
+    /**
+     * Muestra los libros de cada autor
+     * @param autor El autor del que queremos que se muestren sus libros
+     */
+    private void listarLibrosAutor(Autor autor) {
+        vista.dlmLibrosAutor.clear();
+        if (autor.getLibrosPublicados() != null) {
+            for (Libro libro : autor.getLibrosPublicados()){
+                vista.dlmLibrosAutor.addElement(libro);
+            }
+        }
+    }
+
+    /**
+     * Refresca los elementos en los que aparecen autores
+     */
     private void listarAutores() {
         vista.dlmAutores.clear();
         for (Autor autor : modelo.getAutores()) {
@@ -136,6 +176,8 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-
+        if(e.getSource() == vista.listaAutores) {
+            listarLibrosAutor((Autor) vista.listaAutores.getSelectedValue());
+        }
     }
 }
