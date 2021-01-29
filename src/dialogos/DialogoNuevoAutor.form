@@ -29,12 +29,12 @@
               <text value="Fecha de nacimiento:"/>
             </properties>
           </component>
-          <component id="640d1" class="javax.swing.JLabel">
+          <component id="640d1" class="javax.swing.JLabel" binding="txtSexo">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
+              <text value="Sexo:"/>
             </properties>
           </component>
           <component id="15747" class="javax.swing.JLabel" binding="txtPais">

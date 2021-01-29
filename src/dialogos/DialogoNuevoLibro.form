@@ -131,15 +131,6 @@
           </vspacer>
         </children>
       </grid>
-      <vspacer id="195f4">
-        <constraints border-constraint="North"/>
-      </vspacer>
-      <hspacer id="e063d">
-        <constraints border-constraint="West"/>
-      </hspacer>
-      <hspacer id="b0351">
-        <constraints border-constraint="East"/>
-      </hspacer>
     </children>
   </grid>
 </form>

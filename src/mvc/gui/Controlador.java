@@ -2,8 +2,10 @@ package mvc.gui;
 
 import datos.Autor;
 import datos.Libro;
+import datos.Personaje;
 import dialogos.DialogoNuevoAutor;
 import dialogos.DialogoNuevoLibro;
+import dialogos.DialogoNuevoPersonaje;
 import mvc.Modelo;
 
 import javax.swing.*;
@@ -99,12 +101,31 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 case "NuevoLibro":
                     nuevoLibro();
                     break;
+
+                case "NuevoPersonaje":
+                    nuevoPersonaje();
+                    break;
             }
 
         }
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    /**
+     * Crea un diálogo para añadir un personaje y refresca los elementos en los que aparecen
+     */
+    private void nuevoPersonaje() {
+        DialogoNuevoPersonaje d = new DialogoNuevoPersonaje(modelo);
+        listarPersonajes();
+    }
+
+    private void listarPersonajes() {
+        vista.dlmPersonajes.clear();
+        for (Personaje p : modelo.getPersonajes()) {
+            vista.dlmPersonajes.addElement(p);
+        }
     }
 
     /**
@@ -115,6 +136,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         listarLibros();
     }
 
+    /**
+     * Limpia el JList en el que se muestran los libros y lo actualiza
+     */
     private void listarLibros() {
         vista.dlmLibros.clear();
         for (Libro libro : modelo.getLibros()) {
@@ -144,6 +168,32 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
+     * Muestra los personajes del libro seleccionado
+     * @param libro El libro del que queremos saber sus personajes
+     */
+    private void listarPersonajesLibro(Libro libro) {
+        vista.dlmPersonajesLibro.clear();
+        if (libro.getPersonajesLibro() != null) {
+            for (Personaje personaje : libro.getPersonajesLibro()) {
+                vista.dlmPersonajesLibro.addElement(personaje);
+            }
+        }
+    }
+
+    /**
+     * Muestra los libros del personaje seleccionado
+     * @param personaje El personaje del que queremos saber los libros en los que aparece
+     */
+    private void listarLibrosPersonaje(Personaje personaje) {
+        vista.dlmLibrosPersonaje.clear();
+        if (personaje.getLibrosPersonaje() != null) {
+            for (Libro libro : personaje.getLibrosPersonaje()) {
+                vista.dlmLibrosPersonaje.addElement(libro);
+            }
+        }
+    }
+
+    /**
      * Refresca los elementos en los que aparecen autores
      */
     private void listarAutores() {
@@ -157,6 +207,11 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
     }
 
+    /**
+     * Muestra una ventana que permite seleccionar un archivo para cargar datos ya guardados
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void cargarDatos() throws IOException, ClassNotFoundException {
         JFileChooser fc = new JFileChooser();
         int opcion = fc.showOpenDialog(vista.frame);
@@ -166,6 +221,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
     }
 
+    /**
+     * Muestra una ventana que nos permite guardar datos en el lugar que seleccionemos
+     * @throws IOException
+     */
     private void guardarDatos() throws IOException {
         JFileChooser fc = new JFileChooser();
         int opcion = fc.showSaveDialog(vista.frame);
@@ -174,10 +233,18 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
     }
 
+    /**
+     * Método que se ejecuta cuando se selecciona un valor en uno de los JList
+     * @param e El evento producido
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == vista.listaAutores) {
             listarLibrosAutor((Autor) vista.listaAutores.getSelectedValue());
+        } else if (e.getSource() == vista.listaLibros) {
+            listarPersonajesLibro((Libro) vista.listaLibros.getSelectedValue());
+        } else if (e.getSource() == vista.listaPersonajes) {
+            listarLibrosPersonaje((Personaje) vista.listaPersonajes.getSelectedValue());
         }
     }
 }

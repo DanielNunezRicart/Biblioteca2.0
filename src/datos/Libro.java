@@ -3,7 +3,7 @@ package datos;
 import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Libro implements Comparable<Libro>, Serializable {
 
@@ -11,7 +11,7 @@ public class Libro implements Comparable<Libro>, Serializable {
     private Autor autorLibro;
     private LocalDate fechaPublicacion;
     private float precioLibro;
-    private ArrayList<Personaje> personajesLibro;
+    private HashSet<Personaje> personajesLibro;
     private ImageIcon portada;
 
     public Libro(String nombreLibro, Autor autorLibro, LocalDate fechaPublicacion, float precioLibro, ImageIcon portada) {
@@ -19,7 +19,7 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.autorLibro = autorLibro;
         this.fechaPublicacion = fechaPublicacion;
         this.precioLibro = precioLibro;
-        personajesLibro = new ArrayList<>();
+        personajesLibro = new HashSet<>();
         this.portada = portada;
     }
 
@@ -55,17 +55,19 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.precioLibro = precioLibro;
     }
 
-    public ArrayList<Personaje> getPersonajesLibro() {
+    public HashSet<Personaje> getPersonajesLibro() {
         return personajesLibro;
     }
 
-    public void setPersonajesLibro(ArrayList<Personaje> personajesLibro) {
+    public void setPersonajesLibro(HashSet<Personaje> personajesLibro) {
         this.personajesLibro = personajesLibro;
     }
 
     public ImageIcon getPortada() {return portada;}
 
     public void setPortada(ImageIcon portada) {this.portada = portada;}
+
+    public void anadirPersonaje(Personaje personaje) {personajesLibro.add(personaje);}
 
     @Override
     public String toString() {

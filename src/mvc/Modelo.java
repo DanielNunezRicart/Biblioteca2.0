@@ -58,6 +58,36 @@ public class Modelo {
     }
 
     /**
+     * Método que añade un personaje nuevo al sistema. También lo añade a cualquiera de los libros en los que sale
+     * @param personaje El personaje que se desea añadir
+     */
+    public void nuevoPersonaje(Personaje personaje) {
+        if (!comprobarPersonajeExiste(personaje)) {
+            personajes.add(personaje);
+            for (Libro libro : personaje.getLibrosPersonaje()) {
+                libro.anadirPersonaje(personaje);
+            }
+        } else {
+            Util.mensajeError("¡El personaje que intenta introducir ya existe!");
+        }
+    }
+
+    /**
+     * Método que comprueba si el personaje pasado por parámetro ya existe en el sistema
+     * @param personaje El personaje que deseamos comprobar si existe
+     * @return boolean True si existe false si no
+     */
+    private boolean comprobarPersonajeExiste(Personaje personaje) {
+        boolean existe = false;
+        for (Personaje p : personajes) {
+            if (p.getNombrePersona().toLowerCase().equals(personaje.getNombrePersona().toLowerCase())) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
+    /**
      * Método que añade un libro al sistema
      * @param libro El objeto libro que queremos añadir
      */
@@ -129,5 +159,13 @@ public class Modelo {
      */
     public HashSet<Libro> getLibros() {
         return libros;
+    }
+
+    /**
+     * Método que devuelce la lista de personajes
+     * @return HashSet<Personaje> La lista de personajes añadidos al sistema
+     */
+    public HashSet<Personaje> getPersonajes() {
+        return personajes;
     }
 }

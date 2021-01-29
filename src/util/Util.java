@@ -2,6 +2,8 @@ package util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class Util {
 
@@ -36,6 +38,17 @@ public class Util {
         ImageIcon imagenRedimensionada = new ImageIcon(image.getScaledInstance(anchoRecomendado, altoRecomendado, Image.SCALE_SMOOTH));
 
         return imagenRedimensionada;
+    }
+
+    /**
+     * Método que calcula la edad a partir de la fecha de nacimiento
+     * @param nacimiento LocalDate con la fecha de nacimiento
+     * @return int Años que tiene la persona
+     */
+    public static int calcularEdad(LocalDate nacimiento) {
+        LocalDate fechaActual = LocalDate.now();
+        Period intervalo = Period.between(nacimiento, fechaActual);
+        return intervalo.getYears();
     }
 
 }
