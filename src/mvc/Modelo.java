@@ -7,6 +7,7 @@ import util.Util;
 
 import java.io.*;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Modelo {
 
@@ -143,6 +144,20 @@ public class Modelo {
         }
 
         return existe;
+    }
+
+    /**
+     * Elimina el personaje pasado por parámetro de la lista de personajes y de la lista de personajes de los
+     * libros correspondientes
+     * @param personaje El personaje que queremos eliminar
+     */
+    public void eliminarPersonaje(Personaje personaje) {
+        HashSet<Libro> librosPersonaje = personaje.getLibrosPersonaje();
+        Iterator<Libro> it = librosPersonaje.iterator();
+        while (it.hasNext()) {
+            it.next().getPersonajesLibro().remove(personaje);
+        }
+        personajes.remove(personaje);
     }
 
     /**

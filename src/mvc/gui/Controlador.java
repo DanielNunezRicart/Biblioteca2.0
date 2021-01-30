@@ -7,12 +7,14 @@ import dialogos.DialogoNuevoAutor;
 import dialogos.DialogoNuevoLibro;
 import dialogos.DialogoNuevoPersonaje;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 /**
@@ -77,6 +79,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -105,12 +108,32 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 case "NuevoPersonaje":
                     nuevoPersonaje();
                     break;
-            }
 
+                case "EliminarPersonaje":
+                    eliminarPersonaje();
+                    break;
+            }
         }
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    /**
+     * Elimina un personaje seleccionado en la lista de personajes
+     */
+    private void eliminarPersonaje() {
+        //Comprobamos que hay un personaje seleccionado, si no salta un mensaje de error
+        if (vista.listaPersonajes.isSelectionEmpty()) {
+            Util.mensajeError("No puede eliminar un personaje si no lo selecciona primero");
+        } else {
+            //Si hay un personaje llamamos al método para eliminarlo de la clase Modelo
+            Personaje personaje = (Personaje) vista.listaPersonajes.getSelectedValue();
+            modelo.eliminarPersonaje(personaje);
+            listarPersonajes();
+            vista.dlmLibrosPersonaje.clear();
+            vista.listaLibros.clearSelection();
+        }
     }
 
     /**
@@ -121,10 +144,15 @@ public class Controlador implements ActionListener, ListSelectionListener {
         listarPersonajes();
     }
 
+    /**
+     * Método que refresca la lista de personajes existentes
+     */
     private void listarPersonajes() {
         vista.dlmPersonajes.clear();
-        for (Personaje p : modelo.getPersonajes()) {
-            vista.dlmPersonajes.addElement(p);
+        if (!modelo.getPersonajes().isEmpty()) {
+            for (Personaje p : modelo.getPersonajes()) {
+                vista.dlmPersonajes.addElement(p);
+            }
         }
     }
 
@@ -140,6 +168,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      * Limpia el JList en el que se muestran los libros y lo actualiza
      */
     private void listarLibros() {
+        vista.listaLibros.clearSelection();
         vista.dlmLibros.clear();
         for (Libro libro : modelo.getLibros()) {
             vista.dlmLibros.addElement(libro);
@@ -186,7 +215,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void listarLibrosPersonaje(Personaje personaje) {
         vista.dlmLibrosPersonaje.clear();
-        if (personaje.getLibrosPersonaje() != null) {
+        if (!personaje.getLibrosPersonaje().isEmpty()) {
             for (Libro libro : personaje.getLibrosPersonaje()) {
                 vista.dlmLibrosPersonaje.addElement(libro);
             }
@@ -218,7 +247,6 @@ public class Controlador implements ActionListener, ListSelectionListener {
         if (opcion == JFileChooser.APPROVE_OPTION) {
             modelo.cargarDatos(fc.getSelectedFile());
         }
-
     }
 
     /**
@@ -240,11 +268,17 @@ public class Controlador implements ActionListener, ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == vista.listaAutores) {
-            listarLibrosAutor((Autor) vista.listaAutores.getSelectedValue());
+            if (vista.listaAutores.getSelectedValue() != null) {
+                listarLibrosAutor((Autor) vista.listaAutores.getSelectedValue());
+            }
         } else if (e.getSource() == vista.listaLibros) {
-            listarPersonajesLibro((Libro) vista.listaLibros.getSelectedValue());
+            if (vista.listaLibros.getSelectedValue() != null) {
+                listarPersonajesLibro((Libro) vista.listaLibros.getSelectedValue());
+            }
         } else if (e.getSource() == vista.listaPersonajes) {
-            listarLibrosPersonaje((Personaje) vista.listaPersonajes.getSelectedValue());
+            if (vista.listaPersonajes.getSelectedValue() != null) {
+                listarLibrosPersonaje((Personaje) vista.listaPersonajes.getSelectedValue());
+            }
         }
     }
 }
