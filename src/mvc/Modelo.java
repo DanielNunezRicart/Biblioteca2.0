@@ -161,6 +161,36 @@ public class Modelo {
     }
 
     /**
+     * Elimina el libro pasado por parámetro de la lista de libros, de la lista de libros de los autores y de la
+     * lista de libros de los personajes
+     * @param libro El libro que queremos eliminar
+     */
+    public void eliminarLibro(Libro libro) {
+        //Primero eliminamos el libro del autor
+        libro.getAutorLibro().getLibrosPublicados().remove(libro);
+        //Ahora lo eliminamos de la lista de libros de sus personajes
+        HashSet<Personaje> borrar = new HashSet<>();
+        Iterator<Personaje> it = libro.getPersonajesLibro().iterator();
+        while (it.hasNext()) {
+            Personaje p = it.next();
+            if (p.getLibrosPersonaje().contains(libro) && p.getLibrosPersonaje().size() > 1) {
+                p.getLibrosPersonaje().remove(libro);
+                //Si el personaje sólo tiene ese libro lo añadimos a borrar
+            } else if (p.getLibrosPersonaje().contains(libro) && p.getLibrosPersonaje().size() == 1) {
+                borrar.add(p);
+            }
+        }
+        //Comprobamos si borrar está vacío, y si no, eliminamos a los personajes que haya dentro
+        if (!borrar.isEmpty()) {
+            for (Personaje p : borrar) {
+                personajes.remove(p);
+            }
+        }
+        //Finalmente borramos el libro
+        libros.remove(libro);
+    }
+
+    /**
      * Método que devuelve la lista de autores
      * @return HashSet<Autor> La lista de autores añadidos en el sistema
      */

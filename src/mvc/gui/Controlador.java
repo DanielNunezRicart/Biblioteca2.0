@@ -14,7 +14,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 /**
@@ -101,8 +100,16 @@ public class Controlador implements ActionListener, ListSelectionListener {
                     nuevoAutor();
                     break;
 
+                case "EliminarAutor":
+                    eliminarAutor();
+                    break;
+
                 case "NuevoLibro":
                     nuevoLibro();
+                    break;
+                    
+                case "EliminarLibro":
+                    eliminarLibro();
                     break;
 
                 case "NuevoPersonaje":
@@ -117,6 +124,29 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    private void eliminarAutor() {
+    }
+
+    /**
+     * Elimina un personaje seleccionado en la lista de libros
+     */
+    private void eliminarLibro() {
+        if (vista.listaLibros.isSelectionEmpty()) {
+            Util.mensajeError("No puede eliminar un libro si no lo selecciona primero");
+        } else {
+            Libro libro = (Libro) vista.listaLibros.getSelectedValue();
+            modelo.eliminarLibro(libro);
+            listarLibros();
+            vista.listaAutores.clearSelection();
+            vista.dlmLibrosAutor.clear();
+            vista.listaPersonajes.clearSelection();
+            vista.listaLibrosPersonaje.clearSelection();
+            vista.dlmLibrosPersonaje.clear();
+            vista.dlmPersonajesLibro.clear();
+            listarPersonajes();
+        }
     }
 
     /**
