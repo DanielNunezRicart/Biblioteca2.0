@@ -71,10 +71,14 @@
           </component>
           <component id="e235" class="javax.swing.JButton" binding="botPortada">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="40" height="40"/>
+                <preferred-size width="40" height="40"/>
+                <maximum-size width="40" height="40"/>
+              </grid>
             </constraints>
             <properties>
-              <text value="Elige portada"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="4d8d" class="javax.swing.JLabel" binding="txtRutaImagen">

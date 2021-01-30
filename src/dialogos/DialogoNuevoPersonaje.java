@@ -1,10 +1,8 @@
 package dialogos;
 
-import com.github.lgooddatepicker.components.DatePicker;
 import datos.Libro;
 import datos.Personaje;
 import mvc.Modelo;
-import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -27,7 +25,8 @@ public class DialogoNuevoPersonaje extends JDialog {
     private JRadioButton rbotProtagonista;
     private JRadioButton rbotSecundario;
     private JButton botSelecLibros;
-    private DatePicker datePicker;
+    private JTextField cajaEdad;
+    private JLabel txtLibrosSelect;
     private ButtonGroup grupoSexo;
     private ButtonGroup grupoRol;
     private HashSet<Libro> libros;
@@ -58,12 +57,6 @@ public class DialogoNuevoPersonaje extends JDialog {
 
         asignarGruposBotones();
         crearListeners();
-
-        //Cambiamos un poco el datepicker
-        datePicker.setDateToToday();
-        JButton button = datePicker.getComponentToggleCalendarButton();
-        button.setText("");
-        button.setIcon(new ImageIcon(getClass().getResource("/iconos/calendar.png")));
     }
 
     /**
@@ -78,11 +71,8 @@ public class DialogoNuevoPersonaje extends JDialog {
 
     /**
      * Método que despliega un diálogo que permite seleccionar los libros en los que sale el personaje
-     * @return HashSet<Libro> Lista de libros en los que sale el personaje
      */
-    private void seleccionarLibros(){
-        DialogoSeleccionLibros d = new DialogoSeleccionLibros(modelo, this);
-    }
+    private void seleccionarLibros(){ DialogoSeleccionLibros d = new DialogoSeleccionLibros(modelo, this); }
 
     /**
      * Asigna los radiobuttons a sus grupos correspondientes y selecciona por defecto el de Masculino y el de
@@ -104,7 +94,9 @@ public class DialogoNuevoPersonaje extends JDialog {
     public void setLibros(HashSet<Libro> libros) {
         if (!libros.isEmpty()) {
             this.libros = libros;
-            botSelecLibros.setText("Libros seleccionados");
+            txtLibrosSelect.setText("Libros seleccionados");
+        } else {
+            txtLibrosSelect.setText("Ningún libro seleccionado");
         }
     }
 
@@ -118,7 +110,7 @@ public class DialogoNuevoPersonaje extends JDialog {
 
     private void nuevoPersonaje() {
         String nombre = cajaNombre.getText();
-        int edad = Util.calcularEdad(datePicker.getDate());
+        int edad = Integer.parseInt(cajaEdad.getText());
         String sexo = obtenerSexoPersonaje();
         String rol = obtenerRolPersonaje();
 
