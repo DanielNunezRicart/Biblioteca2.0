@@ -2,16 +2,17 @@ package datos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Autor extends Persona implements Serializable {
 
     private String paisOrigen;
-    private ArrayList<Libro> librosPublicados;
+    private HashSet<Libro> librosPublicados;
 
     public Autor(String nombrePersona, int edadPersona, String sexoPersona, String paisOrigen) {
         super(nombrePersona, edadPersona, sexoPersona);
         this.paisOrigen = paisOrigen;
-        librosPublicados = new ArrayList<>();
+        librosPublicados = new HashSet<>();
     }
 
     public String getPaisOrigen() {
@@ -22,11 +23,11 @@ public class Autor extends Persona implements Serializable {
         this.paisOrigen = paisOrigen;
     }
 
-    public ArrayList<Libro> getLibrosPublicados() {
+    public HashSet<Libro> getLibrosPublicados() {
         return librosPublicados;
     }
 
-    public void setLibrosPublicados(ArrayList<Libro> librosPublicados) {
+    public void setLibrosPublicados(HashSet<Libro> librosPublicados) {
         this.librosPublicados = librosPublicados;
     }
 

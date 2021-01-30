@@ -6,6 +6,7 @@ import datos.Personaje;
 import util.Util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -188,6 +189,35 @@ public class Modelo {
         }
         //Finalmente borramos el libro
         libros.remove(libro);
+    }
+
+    /**
+     * Elimina el autor pasado por parámetro de la lista de autores, así como todos los libros y personajes que
+     * dependen de él
+     * @param autor
+     */
+    public void eliminarAutor(Autor autor) {
+        //Creamos 2 listas y metemos dentro los libros y personajes que dependen del autor
+        ArrayList<Personaje> borrarPersonajes = new ArrayList<>();
+        ArrayList<Libro> borrarLibros = new ArrayList<>();
+        for (Libro libro : autor.getLibrosPublicados()) {
+            borrarLibros.add(libro);
+            for (Personaje personaje : libro.getPersonajesLibro()) {
+                if (!borrarPersonajes.contains(personaje)) {
+                    borrarPersonajes.add(personaje);
+                }
+            }
+        }
+        //Una vez los tenemos todos procedemos a borrar los personajes
+        for (Personaje personaje : borrarPersonajes) {
+            personajes.remove(personaje);
+        }
+        //Y ahora los libros
+        for (Libro libro : borrarLibros) {
+            libros.remove(libro);
+        }
+        //Por último eliminamos el autor
+        autores.remove(autor);
     }
 
     /**

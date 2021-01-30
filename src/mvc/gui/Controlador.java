@@ -126,7 +126,24 @@ public class Controlador implements ActionListener, ListSelectionListener {
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
     }
 
+    /**
+     * Elimina un autor seleccionado de la lista de autores
+     */
     private void eliminarAutor() {
+        if (vista.listaAutores.isSelectionEmpty()) {
+            Util.mensajeError("No puede eliminar un autor si no lo selecciona primero");
+        } else {
+            Autor autor = (Autor) vista.listaAutores.getSelectedValue();
+            modelo.eliminarAutor(autor);
+            vista.listaLibros.clearSelection();
+            vista.listaPersonajes.clearSelection();
+            vista.dlmLibrosAutor.clear();
+            vista.dlmPersonajesLibro.clear();
+            vista.dlmLibrosPersonaje.clear();
+            listarAutores();
+            listarLibros();
+            listarPersonajes();
+        }
     }
 
     /**
