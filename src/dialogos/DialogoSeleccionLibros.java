@@ -27,6 +27,7 @@ public class DialogoSeleccionLibros extends JDialog {
         setSize(600, 300);
         setResizable(false);
         setUndecorated(false);
+        setLocationRelativeTo(null);
         setModal(true);
 
         cargarModelo();

@@ -5,12 +5,10 @@ import java.io.Serializable;
 public class Persona implements Comparable<Persona>, Serializable {
 
     private String nombrePersona;
-    private int edadPersona;
     private String sexoPersona;
 
-    public Persona(String nombrePersona, int edadPersona, String sexoPersona) {
+    public Persona(String nombrePersona, String sexoPersona) {
         this.nombrePersona = nombrePersona;
-        this.edadPersona = edadPersona;
         this.sexoPersona = sexoPersona;
     }
 
@@ -20,14 +18,6 @@ public class Persona implements Comparable<Persona>, Serializable {
 
     public void setNombrePersona(String nombrePersona) {
         this.nombrePersona = nombrePersona;
-    }
-
-    public int getEdadPersona() {
-        return edadPersona;
-    }
-
-    public void setEdadPersona(int edadPersona) {
-        this.edadPersona = edadPersona;
     }
 
     public String getSexoPersona() {
@@ -40,7 +30,7 @@ public class Persona implements Comparable<Persona>, Serializable {
 
     @Override
     public String toString() {
-        return nombrePersona + ", edad: " + edadPersona + ", sexo: " + sexoPersona;
+        return nombrePersona + ", sexo: " + sexoPersona;
     }
 
     @Override

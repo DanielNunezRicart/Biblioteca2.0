@@ -3,6 +3,7 @@ package mvc;
 import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
+import dialogos.DialogoModAutor;
 import util.Util;
 
 import java.io.*;
@@ -12,18 +13,18 @@ import java.util.Iterator;
 
 public class Modelo {
 
-    private HashSet<Autor> autores;
-    private HashSet<Libro> libros;
-    private HashSet<Personaje> personajes;
+    private ArrayList<Autor> autores;
+    private ArrayList<Libro> libros;
+    private ArrayList<Personaje> personajes;
 
     /**
      * Constructor de la clase Modelo. No necesita parámetros. Simplemente inicializa los
      * HashSet que contienen los objetos de tipo Autor, Libro y Personaje
      */
     public Modelo() {
-        autores = new HashSet<>();
-        libros = new HashSet<>();
-        personajes = new HashSet<>();
+        autores = new ArrayList<>();
+        libros = new ArrayList<>();
+        personajes = new ArrayList<>();
     }
 
     /**
@@ -52,9 +53,9 @@ public class Modelo {
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream deserializador = new ObjectInputStream(fis);
 
-        autores = (HashSet<Autor>) deserializador.readObject();
-        libros = (HashSet<Libro>) deserializador.readObject();
-        personajes = (HashSet<Personaje>) deserializador.readObject();
+        autores = (ArrayList<Autor>) deserializador.readObject();
+        libros = (ArrayList<Libro>) deserializador.readObject();
+        personajes = (ArrayList<Personaje>) deserializador.readObject();
 
         deserializador.close();
     }
@@ -147,6 +148,10 @@ public class Modelo {
         return existe;
     }
 
+    public void modAutor(Autor autor) {
+        DialogoModAutor d = new DialogoModAutor(this, autor);
+    }
+
     /**
      * Elimina el personaje pasado por parámetro de la lista de personajes y de la lista de personajes de los
      * libros correspondientes
@@ -224,7 +229,7 @@ public class Modelo {
      * Método que devuelve la lista de autores
      * @return HashSet<Autor> La lista de autores añadidos en el sistema
      */
-    public HashSet<Autor> getAutores() {
+    public ArrayList<Autor> getAutores() {
         return autores;
     }
 
@@ -232,7 +237,7 @@ public class Modelo {
      * Método que devuelve la lista de libros
      * @return HashSet<Libro> La lista de libros añadidos en el sistema
      */
-    public HashSet<Libro> getLibros() {
+    public ArrayList<Libro> getLibros() {
         return libros;
     }
 
@@ -240,7 +245,7 @@ public class Modelo {
      * Método que devuelce la lista de personajes
      * @return HashSet<Personaje> La lista de personajes añadidos al sistema
      */
-    public HashSet<Personaje> getPersonajes() {
+    public ArrayList<Personaje> getPersonajes() {
         return personajes;
     }
 }

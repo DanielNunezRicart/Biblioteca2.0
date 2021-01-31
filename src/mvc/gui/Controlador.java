@@ -100,6 +100,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
                     nuevoAutor();
                     break;
 
+                case "EditarAutor":
+                    modificarAutor();
+                    break;
+
                 case "EliminarAutor":
                     eliminarAutor();
                     break;
@@ -124,6 +128,25 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    /**
+     * Modifica un autor seleccionado en la lista de autores
+     */
+    private void modificarAutor() {
+        if (vista.listaAutores.isSelectionEmpty()) {
+            Util.mensajeError("No puede modificar un autor si no lo selecciona primero");
+        } else {
+            modelo.modAutor((Autor) vista.listaAutores.getSelectedValue());
+            vista.listaLibros.clearSelection();
+            vista.listaPersonajes.clearSelection();
+            vista.dlmLibrosAutor.clear();
+            vista.dlmPersonajesLibro.clear();
+            vista.dlmLibrosPersonaje.clear();
+            listarAutores();
+            listarLibros();
+            listarPersonajes();
+        }
     }
 
     /**

@@ -8,6 +8,7 @@ import mvc.Modelo;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class DialogoNuevoAutor extends JDialog {
 
@@ -44,9 +45,7 @@ public class DialogoNuevoAutor extends JDialog {
     /**
      * Inicia los componentes de la aplicación
      */
-    public void iniciarComponentes() {
-        configurarRadioButtons();
-
+    private void iniciarComponentes() {
         //Características del diálogo
         setSize(600, 300);
         setResizable(false);
@@ -54,9 +53,8 @@ public class DialogoNuevoAutor extends JDialog {
         setLocationRelativeTo(null);
         setTitle("Añadir autor");
 
-        //Listeners de los botones aceptar y cancelar
-        botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
-        botCancelar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { cancelar(); }});
+        configurarRadioButtons();
+        configurarListeners();
 
         //Cambiamos un poco el DatePicker
         datePicker.setDateToToday();
@@ -72,6 +70,14 @@ public class DialogoNuevoAutor extends JDialog {
         grupo.add(rbotMasculino);
         grupo.add(rbotFemenino);
         rbotMasculino.setSelected(true);
+    }
+
+    /**
+     * Crea los listeners de los botones aceptar y cancelar
+     */
+    private void configurarListeners() {
+        botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
+        botCancelar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { cancelar(); }});
     }
 
     /**
@@ -94,11 +100,11 @@ public class DialogoNuevoAutor extends JDialog {
      */
     private void addAutor() {
         String nombre = cajaNombre.getText();
-        int edad = Util.calcularEdad(datePicker.getDate());
+        LocalDate fechaNac = datePicker.getDate();
         String sexo = obtenerSexoPersona();
         String pais = cajaPais.getText();
 
-        Autor autor = new Autor(nombre, edad, sexo, pais);
+        Autor autor = new Autor(nombre, fechaNac, sexo, pais);
         modelo.nuevoAutor(autor);
     }
 
@@ -109,9 +115,9 @@ public class DialogoNuevoAutor extends JDialog {
     private String obtenerSexoPersona() {
         String devolver = "";
         if (rbotFemenino.isSelected()) {
-            devolver = "Femenino";
+            devolver = "femenino";
         } else {
-            devolver = "Masculino";
+            devolver = "masculino";
         }
         return devolver;
     }

@@ -114,7 +114,7 @@ public class DialogoNuevoPersonaje extends JDialog {
         String sexo = obtenerSexoPersonaje();
         String rol = obtenerRolPersonaje();
 
-        Personaje personaje = new Personaje(nombre, edad, sexo, rol, libros);
+        Personaje personaje = new Personaje(nombre, sexo, edad, rol, libros);
         modelo.nuevoPersonaje(personaje);
     }
 
