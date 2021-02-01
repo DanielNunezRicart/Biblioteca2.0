@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class DialogoNuevoLibro extends JDialog{
 
@@ -34,6 +35,7 @@ public class DialogoNuevoLibro extends JDialog{
 
     private Modelo modelo;
     private ImageIcon portada;
+    private ResourceBundle resourceBundle;
 
     /**
      * Constructor del diálogo
@@ -41,6 +43,7 @@ public class DialogoNuevoLibro extends JDialog{
      */
     public DialogoNuevoLibro(Modelo modelo) {
         this.modelo = modelo;
+        resourceBundle = ResourceBundle.getBundle("idioma");
         setContentPane(panel);
 
         iniciarComponentes();
@@ -53,11 +56,11 @@ public class DialogoNuevoLibro extends JDialog{
     private void iniciarComponentes() {
 
         //Características del JDialog
-        setSize(600, 300);
+        setSize(600, 400);
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Añadir libro");
+        setTitle(resourceBundle.getString("dialogoNuevoLibro.titulo"));
         configComboBox();
 
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
@@ -75,7 +78,9 @@ public class DialogoNuevoLibro extends JDialog{
                 JFileChooser fc = new JFileChooser();
                 int opcion = fc.showOpenDialog(null);
                 if (opcion == JFileChooser.APPROVE_OPTION) {
-                    txtRutaImagen.setText(fc.getSelectedFile().getAbsolutePath());
+                    ImageIcon imagen = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+                    portada = Util.escalarPortadaLibro(imagen);
+                    txtRutaImagen.setIcon(portada);
                 }
             }
         });
@@ -118,17 +123,15 @@ public class DialogoNuevoLibro extends JDialog{
         //Con esto hacemos que si el float no es un float, cambie a false
         try {
             Float precio = Float.parseFloat(cajaPrecio.getText());
-            ImageIcon imagen = new ImageIcon(txtRutaImagen.getText());
-            portada = Util.escalarPortadaLibro(imagen);
 
             Libro libro = new Libro(nombre, autor, fecha, precio, portada);
             if (!camposIntroducidosLibro()) {
-                Util.mensajeError("No se han introducido todos los campos");
+                Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
             } else {
                 modelo.nuevoLibro(libro);
             }
         }
-        catch (NumberFormatException nfe) { Util.mensajeError("El precio debe ser un número");}
+        catch (NumberFormatException nfe) { Util.mensajeError(resourceBundle.getString("error.numberFormatException.precio"));}
     }
 
     /**
@@ -141,7 +144,7 @@ public class DialogoNuevoLibro extends JDialog{
                 || datePicker.getText().isEmpty()
                 || cboxAutores.getSelectedItem() == null
                 || cajaPrecio.getText().isEmpty()
-                || txtRutaImagen.getText().equals("")) {
+                || txtRutaImagen.getIcon() == null) {
             flag = false;
         }
 

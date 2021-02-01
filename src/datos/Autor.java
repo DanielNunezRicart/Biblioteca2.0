@@ -3,18 +3,21 @@ package datos;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class Autor extends Persona implements Serializable {
 
     private LocalDate fechaNacimiento;
     private String paisOrigen;
     private HashSet<Libro> librosPublicados;
+    private ResourceBundle resourceBundle;
 
     public Autor(String nombrePersona, LocalDate fechaNacimiento, String sexoPersona, String paisOrigen) {
         super(nombrePersona, sexoPersona);
         this.fechaNacimiento = fechaNacimiento;
         this.paisOrigen = paisOrigen;
         librosPublicados = new HashSet<>();
+        resourceBundle = ResourceBundle.getBundle("idioma");
     }
 
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
@@ -43,8 +46,7 @@ public class Autor extends Persona implements Serializable {
 
     @Override
     public String toString() {
-        String cadena = "";
-        cadena = (super.getSexoPersona().equals("masculino")) ? "nacido" : "nacida";
-        return super.toString() + ", " + cadena + " el " + fechaNacimiento.toString() + " en " + paisOrigen;
+        return super.toString() + resourceBundle.getString("autor.nacido") + fechaNacimiento.toString() +
+                resourceBundle.getString("autor.en") + paisOrigen;
     }
 }

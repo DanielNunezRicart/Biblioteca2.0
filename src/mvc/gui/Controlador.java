@@ -3,10 +3,15 @@ package mvc.gui;
 import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
+import dialogos.DialogoIdioma;
 import dialogos.DialogoNuevoAutor;
 import dialogos.DialogoNuevoLibro;
 import dialogos.DialogoNuevoPersonaje;
 import mvc.Modelo;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 import util.Util;
 
 import javax.swing.*;
@@ -14,8 +19,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * Clase Controlador
@@ -24,6 +29,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
     private Vista vista;
     private Modelo modelo;
+    private ResourceBundle resourceBundle;
 
     /**
      * Constructor de la clase Controlador
@@ -33,6 +39,8 @@ public class Controlador implements ActionListener, ListSelectionListener {
     public Controlador(Vista vista, Modelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
+
+        resourceBundle = ResourceBundle.getBundle("idioma");
 
         //Añadimos los listeners
         addListListeners(this);
@@ -142,6 +150,22 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     private void mostrarGraficos() {
+        if (!modelo.getLibros().isEmpty()) {
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            for (Autor autor : modelo.getAutores()) {
+                int nLibros = autor.getLibrosPublicados().size();
+                dataset.setValue(autor.getNombrePersona(), Double.valueOf(nLibros));
+            }
+            JFreeChart diagrama = ChartFactory.createPieChart(resourceBundle.getString("grafico.titulo"), dataset,
+                    true, true, false);
+            ChartFrame frame  = new ChartFrame(resourceBundle.getString("grafico.ventana.titulo"), diagrama);
+            frame.setSize(500,500);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        } else {
+            Util.mensajeError(resourceBundle.getString("error.noDatos"));
+        }
+
     }
 
     /**
@@ -149,7 +173,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void modificarPersonaje() {
         if (vista.listaPersonajes.isSelectionEmpty()) {
-            Util.mensajeError("No puede modificar un personaje si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.modificarSinSeleccionarPersonaje"));
         } else {
             modelo.modPersonaje((Personaje) vista.listaPersonajes.getSelectedValue());
             vista.dlmLibrosPersonaje.clear();
@@ -164,7 +188,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void modificarLibro() {
         if (vista.listaLibros.isSelectionEmpty()) {
-            Util.mensajeError("No puede modificar un libro si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.modificarSinSeleccionarLibro"));
         } else {
             modelo.modLibro((Libro) vista.listaLibros.getSelectedValue());
             vista.dlmLibrosPersonaje.clear();
@@ -181,7 +205,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void modificarAutor() {
         if (vista.listaAutores.isSelectionEmpty()) {
-            Util.mensajeError("No puede modificar un autor si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.modificarSinSeleccionarAutor"));
         } else {
             modelo.modAutor((Autor) vista.listaAutores.getSelectedValue());
             vista.listaLibros.clearSelection();
@@ -200,7 +224,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void eliminarAutor() {
         if (vista.listaAutores.isSelectionEmpty()) {
-            Util.mensajeError("No puede eliminar un autor si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.eliminarSinSeleccionarAutor"));
         } else {
             Autor autor = (Autor) vista.listaAutores.getSelectedValue();
             modelo.eliminarAutor(autor);
@@ -220,7 +244,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void eliminarLibro() {
         if (vista.listaLibros.isSelectionEmpty()) {
-            Util.mensajeError("No puede eliminar un libro si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.eliminarSinSeleccionarLibro"));
         } else {
             Libro libro = (Libro) vista.listaLibros.getSelectedValue();
             modelo.eliminarLibro(libro);
@@ -241,7 +265,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void eliminarPersonaje() {
         //Comprobamos que hay un personaje seleccionado, si no salta un mensaje de error
         if (vista.listaPersonajes.isSelectionEmpty()) {
-            Util.mensajeError("No puede eliminar un personaje si no lo selecciona primero");
+            Util.mensajeError(resourceBundle.getString("error.eliminarSinSeleccionarPersonaje"));
         } else {
             //Si hay un personaje llamamos al método para eliminarlo de la clase Modelo
             Personaje personaje = (Personaje) vista.listaPersonajes.getSelectedValue();
@@ -349,7 +373,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     private void seleccionarIdioma() {
-
+        DialogoIdioma d = new DialogoIdioma();
     }
 
     /**

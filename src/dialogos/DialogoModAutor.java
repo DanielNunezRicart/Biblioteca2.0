@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class DialogoModAutor extends JDialog {
     private JPanel panel;
@@ -30,12 +31,15 @@ public class DialogoModAutor extends JDialog {
 
     private Modelo modelo;
     private Autor autorAModificar;
+    private ResourceBundle resourceBundle;
 
     public DialogoModAutor(Modelo modelo, Autor autorAModificar) {
         this.modelo = modelo;
         this.autorAModificar = autorAModificar;
         setContentPane(panel);
         grupo = new ButtonGroup();
+
+        resourceBundle = ResourceBundle.getBundle("idioma");
 
         iniciarComponentes();
         setValoresPorDefecto(autorAModificar);
@@ -64,7 +68,7 @@ public class DialogoModAutor extends JDialog {
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Modificar autor");
+        setTitle(resourceBundle.getString("dialogoModAutor.titulo"));
 
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
@@ -119,7 +123,7 @@ public class DialogoModAutor extends JDialog {
         String pais = cajaPais.getText();
 
         if (!camposIntroducidosAutor()) {
-            Util.mensajeError("No se han introducido todos los campos");
+            Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
         } else {
             int index = modelo.getAutores().indexOf(autorAModificar);
             modelo.getAutores().get(index).setNombrePersona(nombre);

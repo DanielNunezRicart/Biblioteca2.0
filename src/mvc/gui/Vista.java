@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 
 import datos.Autor;
 import datos.Libro;
@@ -59,9 +60,13 @@ public class Vista {
     DefaultListModel<Personaje> dlmPersonajes;
     DefaultListModel<Libro> dlmLibrosPersonaje;
 
+    private ResourceBundle resourceBundle;
+
     public Vista() {
+        resourceBundle = ResourceBundle.getBundle("idioma");
+
         //Creamos el JFrame
-        frame = new JFrame("Biblioteca 2.0");
+        frame = new JFrame(resourceBundle.getString("tituloAplicacion"));
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

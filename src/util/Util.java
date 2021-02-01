@@ -2,10 +2,18 @@ package util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class Util {
+
+    private static ResourceBundle boundleUtil = ResourceBundle.getBundle("idioma");
 
     /**
      * Muestra un JOptionPane con un mensaje de error
@@ -41,13 +49,38 @@ public class Util {
     }
 
     /**
-     * Método que calcula la edad a partir de la fecha de nacimiento
-     * @param nacimiento LocalDate con la fecha de nacimiento
-     * @return int Años que tiene la persona
+     * Obtiene el locale actual
+     * @return Locale El locale actual
      */
-    public static int calcularEdad(LocalDate nacimiento) {
-        LocalDate fechaActual = LocalDate.now();
-        Period intervalo = Period.between(nacimiento, fechaActual);
-        return intervalo.getYears();
+    public static Locale obtenerLocale() {
+
+        Locale locale = null;
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader("data/preferencias.conf"));
+            String pais = properties.getProperty("pais");
+            String idioma = properties.getProperty("idioma");
+
+            if(pais.equals("UK")){
+                locale = new Locale("en", "UK");
+            }
+
+        } catch (IOException e) { e.printStackTrace(); }
+
+        //Si no se ha podido cargar el fichero, idioma spanish
+        if(locale == null){
+            locale = new Locale("es", "ES");
+        }
+        return locale;
+    }
+
+    public static void carpetaDatos() {File directorio = new File("data");
+        if(!directorio.exists()) {
+            directorio.mkdir();
+        }
+    }
+
+    public static int mensajeConfirmacion(String mensaje){
+        return JOptionPane.showConfirmDialog(null, mensaje, boundleUtil.getString("util.mensajeConfirmacion.titulo"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
 }

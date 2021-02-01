@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class DialogoModLibro extends JDialog {
 
@@ -37,9 +38,12 @@ public class DialogoModLibro extends JDialog {
     private Modelo modelo;
     private HashSet<Personaje> personajesOriginalesLibro;
     private HashSet<Personaje> nuevosPersonajes;
+    private ImageIcon portada;
+    private ResourceBundle resourceBundle;
 
     public DialogoModLibro(Modelo modelo, Libro libro) {
         this.modelo = modelo;
+        resourceBundle = ResourceBundle.getBundle("idioma");
         nuevosPersonajes = new HashSet<>();
 
         libroAModificar = libro;
@@ -55,11 +59,11 @@ public class DialogoModLibro extends JDialog {
      * Método que inicia los componentes gráficos de la aplicación
      */
     private void iniciarComponentes() {
-        setSize(600, 400);
+        setSize(600, 500);
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Modificar libro");
+        setTitle(resourceBundle.getString("dialogoModLibro.titulo"));
 
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
@@ -77,7 +81,8 @@ public class DialogoModLibro extends JDialog {
      * @param libro El libro del cual queremos coger los valores
      */
     private void valoresPorDefecto(Libro libro) {
-        txtRutaImagen.setText(libro.getPortada().toString());
+        portada = libro.getPortada();
+        txtRutaImagen.setIcon(portada);
         cajaNombre.setText(libro.getNombreLibro());
         cboxAutores.setSelectedItem(libro.getAutorLibro());
         datePicker.setDate(libro.getFechaPublicacion());
@@ -121,7 +126,9 @@ public class DialogoModLibro extends JDialog {
                 JFileChooser fc = new JFileChooser();
                 int opcion = fc.showOpenDialog(null);
                 if (opcion == JFileChooser.APPROVE_OPTION) {
-                    txtRutaImagen.setText(fc.getSelectedFile().getAbsolutePath());
+                    ImageIcon imagen = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+                    portada = Util.escalarPortadaLibro(imagen);
+                    txtRutaImagen.setIcon(portada);
                 }
             }
         });
@@ -134,7 +141,7 @@ public class DialogoModLibro extends JDialog {
      */
     private void seleccionarPersonajes() {
         DialogoSeleccionPersonajes d = new DialogoSeleccionPersonajes(modelo, this);
-        txtPersonajes.setText("Personajes modificados");
+        txtPersonajes.setText(resourceBundle.getString("dialogos.personajesSeleccionados"));
     }
 
     /**
@@ -167,7 +174,7 @@ public class DialogoModLibro extends JDialog {
      */
     private void modValores() {
         if (!camposIntroducidosLibro()) {
-            Util.mensajeError("No se han introducido todos los campos");
+            Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
         } else {
             try {
                 ImageIcon portada = new ImageIcon(txtRutaImagen.getText());
@@ -196,7 +203,7 @@ public class DialogoModLibro extends JDialog {
                 modelo.getLibros().get(index).setPrecioLibro(precio);
                 modelo.getLibros().get(index).setPersonajesLibro(nuevosPersonajes);
             }
-            catch (NumberFormatException nfe) { Util.mensajeError("El precio debe ser un número");}
+            catch (NumberFormatException nfe) { Util.mensajeError(resourceBundle.getString("error.numberFormatException.precio"));}
         }
     }
 
@@ -217,7 +224,7 @@ public class DialogoModLibro extends JDialog {
                 || datePicker.getText().isEmpty()
                 || cboxAutores.getSelectedItem() == null
                 || cajaPrecio.getText().isEmpty()
-                || txtRutaImagen.getText().equals("")) {
+                || txtRutaImagen.getIcon() == null) {
             flag = false;
         }
         return flag;

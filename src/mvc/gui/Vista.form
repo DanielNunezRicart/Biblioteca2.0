@@ -21,7 +21,7 @@
               <minimumSize width="25" height="25"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
-              <toolTipText value="Guardar datos"/>
+              <toolTipText resource-bundle="idioma" key="principal.botonGuardar.tooltip"/>
             </properties>
           </component>
           <hspacer id="e50e5">
@@ -39,7 +39,7 @@
               <minimumSize width="25" height="25"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
-              <toolTipText value="Cargar datos"/>
+              <toolTipText resource-bundle="idioma" key="principal.botonCargar.tooltip"/>
             </properties>
           </component>
           <hspacer id="de24a">
@@ -52,9 +52,10 @@
             <constraints/>
             <properties>
               <actionCommand value="Idiomas"/>
+              <icon value="iconos/languages.png"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
-              <toolTipText value="Cambiar idioma"/>
+              <toolTipText resource-bundle="idioma" key="principal.botonIdioma.tooltip"/>
             </properties>
           </component>
           <hspacer id="a6d94">
@@ -67,11 +68,12 @@
             <constraints/>
             <properties>
               <actionCommand value="Graficos"/>
+              <icon value="iconos/analytics.png"/>
               <maximumSize width="40" height="40"/>
               <minimumSize width="40" height="40"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
-              <toolTipText value="Mostrar gráficos"/>
+              <toolTipText resource-bundle="idioma" key="principal.botonGraficos.tooltip"/>
             </properties>
           </component>
         </children>
@@ -83,7 +85,7 @@
         <children>
           <grid id="bf2ae" binding="autoresPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <tabbedpane title="Autores"/>
+              <tabbedpane title-resource-bundle="idioma" title-key="principal.pestaAutores.titulo"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -100,12 +102,13 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EliminarAutor"/>
+                      <icon value="iconos/trash-bin.png"/>
                       <label value=""/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Eliminar autor"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEliminarAutor.tooltip"/>
                     </properties>
                   </component>
                   <hspacer id="144b4">
@@ -127,11 +130,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EditarAutor"/>
+                      <icon value="iconos/pencil.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Editar autor"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEditarAutor.tooltip"/>
                     </properties>
                   </component>
                   <component id="d0c9e" class="javax.swing.JButton" binding="botNuevoAutor">
@@ -141,11 +145,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="NuevoAutor"/>
+                      <icon value="iconos/add.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Nuevo autor"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonNuevoAutor.tooltip"/>
                     </properties>
                   </component>
                   <vspacer id="12f6">
@@ -241,7 +246,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Autores:"/>
+                      <text resource-bundle="idioma" key="principal.pestaAutores.autores"/>
                     </properties>
                   </component>
                   <component id="57425" class="javax.swing.JLabel" binding="txtListaLibrosAutores">
@@ -249,7 +254,7 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Libros por autor:"/>
+                      <text resource-bundle="idioma" key="principal.pestaAutores.librosporautor"/>
                     </properties>
                   </component>
                   <grid id="b043f" binding="panelSeparador1" layout-manager="GridBagLayout">
@@ -312,7 +317,7 @@
           </grid>
           <grid id="c6da" binding="librosPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <tabbedpane title="Libros"/>
+              <tabbedpane title-resource-bundle="idioma" title-key="principal.pestaLibros.titulo"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -329,12 +334,13 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EliminarLibro"/>
+                      <icon value="iconos/trash-bin.png"/>
                       <label value=""/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Eliminar libro"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEliminarLibro.tooltip"/>
                     </properties>
                   </component>
                   <hspacer id="2885b">
@@ -356,11 +362,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EditarLibro"/>
+                      <icon value="iconos/pencil.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Editar libro"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEditarLibro.tooltip"/>
                     </properties>
                   </component>
                   <component id="bbf30" class="javax.swing.JButton" binding="botNuevoLibro">
@@ -370,11 +377,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="NuevoLibro"/>
+                      <icon value="iconos/add.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Nuevo libro"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonNuevoLibro.tooltip"/>
                     </properties>
                   </component>
                   <vspacer id="39553">
@@ -470,7 +478,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Libros:"/>
+                      <text resource-bundle="idioma" key="principal.pestaLibros.libros"/>
                     </properties>
                   </component>
                   <component id="1bcbe" class="javax.swing.JLabel" binding="txtPersonajesLibro">
@@ -478,7 +486,7 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Personajes por libro:"/>
+                      <text resource-bundle="idioma" key="principal.pestaLibros.personajesporlibro"/>
                     </properties>
                   </component>
                   <grid id="8dccd" layout-manager="GridBagLayout">
@@ -541,7 +549,7 @@
           </grid>
           <grid id="dfd25" binding="personajesPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <tabbedpane title="Personajes"/>
+              <tabbedpane title-resource-bundle="idioma" title-key="principal.pestaPersonajes.titulo"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -558,12 +566,13 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EliminarPersonaje"/>
+                      <icon value="iconos/trash-bin.png"/>
                       <label value=""/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Eliminar personaje"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEliminarPersonaje.tooltip"/>
                     </properties>
                   </component>
                   <hspacer id="bbe34">
@@ -585,11 +594,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="EditarPersonaje"/>
+                      <icon value="iconos/pencil.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Editar personaje"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonEditarPersonaje.tooltip"/>
                     </properties>
                   </component>
                   <component id="d7cc8" class="javax.swing.JButton" binding="botNuevoPersonaje">
@@ -599,11 +609,12 @@
                     </constraints>
                     <properties>
                       <actionCommand value="NuevoPersonaje"/>
+                      <icon value="iconos/add.png"/>
                       <maximumSize width="25" height="25"/>
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
-                      <toolTipText value="Nuevo personaje"/>
+                      <toolTipText resource-bundle="idioma" key="principal.botonNuevoPersonaje.tooltip"/>
                     </properties>
                   </component>
                   <vspacer id="49cbc">
@@ -699,7 +710,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Personajes:"/>
+                      <text resource-bundle="idioma" key="principal.pestaPersonajes.personajes"/>
                     </properties>
                   </component>
                   <component id="c28f" class="javax.swing.JLabel" binding="txtLibrosPersonaje">
@@ -707,7 +718,7 @@
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Libros por personaje:"/>
+                      <text resource-bundle="idioma" key="principal.pestaPersonajes.librosporpersonaje"/>
                     </properties>
                   </component>
                   <grid id="94525" layout-manager="GridBagLayout">

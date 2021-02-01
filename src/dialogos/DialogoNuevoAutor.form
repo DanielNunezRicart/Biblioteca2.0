@@ -18,7 +18,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Nombre:"/>
+              <text resource-bundle="idioma" key="dialogos.nombre"/>
             </properties>
           </component>
           <component id="1736c" class="javax.swing.JLabel" binding="txtFechaNacimiento">
@@ -26,7 +26,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Fecha de nacimiento:"/>
+              <text resource-bundle="idioma" key="dialogos.fechaNacimiento"/>
             </properties>
           </component>
           <component id="640d1" class="javax.swing.JLabel" binding="txtSexo">
@@ -34,7 +34,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Sexo:"/>
+              <text resource-bundle="idioma" key="dialogos.sexo"/>
             </properties>
           </component>
           <component id="15747" class="javax.swing.JLabel" binding="txtPais">
@@ -42,7 +42,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="País de origen:"/>
+              <text resource-bundle="idioma" key="dialogos.pais"/>
             </properties>
           </component>
           <component id="a15f2" class="javax.swing.JTextField" binding="cajaNombre">
@@ -62,8 +62,8 @@
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <label value="Masculino"/>
-              <text value="Masculino"/>
+              <label resource-bundle="idioma" key="dialogos.masculino"/>
+              <text resource-bundle="idioma" key="dialogos.masculino"/>
             </properties>
           </component>
           <component id="42932" class="javax.swing.JRadioButton" binding="rbotFemenino">
@@ -71,7 +71,7 @@
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Femenino"/>
+              <text resource-bundle="idioma" key="dialogos.femenino"/>
             </properties>
           </component>
           <component id="f9b89" class="com.github.lgooddatepicker.components.DatePicker" binding="datePicker">
@@ -99,7 +99,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Aceptar"/>
+              <text resource-bundle="idioma" key="dialogos.botonAceptar"/>
             </properties>
           </component>
           <hspacer id="6e9ce">
@@ -112,7 +112,7 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Cancelar"/>
+              <text resource-bundle="idioma" key="dialogos.botonCancelar"/>
             </properties>
           </component>
           <hspacer id="6809c">

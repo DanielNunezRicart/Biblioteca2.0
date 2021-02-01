@@ -12,12 +12,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.ResourceBundle;
 
 public class Modelo {
 
     private ArrayList<Autor> autores;
     private ArrayList<Libro> libros;
     private ArrayList<Personaje> personajes;
+
+    private ResourceBundle resourceBundle;
 
     /**
      * Constructor de la clase Modelo. No necesita parámetros. Simplemente inicializa los
@@ -27,6 +30,7 @@ public class Modelo {
         autores = new ArrayList<>();
         libros = new ArrayList<>();
         personajes = new ArrayList<>();
+        resourceBundle = ResourceBundle.getBundle("idioma");
     }
 
     /**
@@ -73,7 +77,7 @@ public class Modelo {
                 libro.anadirPersonaje(personaje);
             }
         } else {
-            Util.mensajeError("¡El personaje que intenta introducir ya existe!");
+            Util.mensajeError(resourceBundle.getString("error.personajeRepetido"));
         }
     }
 
@@ -101,7 +105,7 @@ public class Modelo {
             libros.add(libro);
             libro.getAutorLibro().addLibro(libro);
         } else {
-            Util.mensajeError("¡El libro que intenta introducir ya existe!");
+            Util.mensajeError(resourceBundle.getString("error.libroRepetido"));
         }
     }
 
@@ -128,7 +132,7 @@ public class Modelo {
         if (!comprobarAutorExiste(autor)) {
             autores.add(autor);
         } else {
-            Util.mensajeError("¡El autor que intenta introducir ya existe!");
+            Util.mensajeError(resourceBundle.getString("error.autorRepetido"));
         }
     }
 

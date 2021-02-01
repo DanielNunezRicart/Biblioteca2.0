@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Biblioteca2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Biblioteca2_jar</output-path>
+    <root id="archive" name="Biblioteca2.jar">
+      <element id="module-output" name="Biblioteca2" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/forms-1.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jcommon-1.0.24.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jfreechart-1.0.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

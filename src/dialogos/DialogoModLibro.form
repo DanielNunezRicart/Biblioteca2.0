@@ -18,7 +18,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Nombre:"/>
+              <text resource-bundle="idioma" key="dialogos.nombre"/>
             </properties>
           </component>
           <component id="46728" class="javax.swing.JLabel" binding="txtPrecio">
@@ -26,7 +26,7 @@
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Precio:"/>
+              <text resource-bundle="idioma" key="dialogos.precio"/>
             </properties>
           </component>
           <component id="deb58" class="javax.swing.JTextField" binding="cajaNombre">
@@ -46,7 +46,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Autor:"/>
+              <text resource-bundle="idioma" key="dialogos.autor"/>
             </properties>
           </component>
           <component id="95385" class="javax.swing.JComboBox" binding="cboxAutores">
@@ -60,7 +60,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Fecha de publicación:"/>
+              <text resource-bundle="idioma" key="dialogos.fechaPublicacion"/>
             </properties>
           </component>
           <component id="cb007" class="com.github.lgooddatepicker.components.DatePicker" binding="datePicker">
@@ -78,7 +78,9 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="iconos/picture.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="dialogoModLibro.selecImagen.tooltip"/>
             </properties>
           </component>
           <component id="8c8cc" class="javax.swing.JLabel" binding="txtRutaImagen">
@@ -98,7 +100,9 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="iconos/users.png"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="dialogoModLibro.selecPersonaje.tooltip"/>
             </properties>
           </component>
           <component id="f84b1" class="javax.swing.JLabel" binding="txtPersonajes">
@@ -122,7 +126,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Aceptar"/>
+              <text resource-bundle="idioma" key="dialogos.botonAceptar"/>
             </properties>
           </component>
           <hspacer id="325cf">
@@ -135,7 +139,7 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Cancelar"/>
+              <text resource-bundle="idioma" key="dialogos.botonCancelar"/>
             </properties>
           </component>
           <hspacer id="d42f5">

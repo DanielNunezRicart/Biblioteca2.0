@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class Libro implements Comparable<Libro>, Serializable {
 
@@ -13,6 +14,7 @@ public class Libro implements Comparable<Libro>, Serializable {
     private float precioLibro;
     private HashSet<Personaje> personajesLibro;
     private ImageIcon portada;
+    private ResourceBundle resourceBundle;
 
     public Libro(String nombreLibro, Autor autorLibro, LocalDate fechaPublicacion, float precioLibro, ImageIcon portada) {
         this.nombreLibro = nombreLibro;
@@ -21,6 +23,7 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.precioLibro = precioLibro;
         personajesLibro = new HashSet<>();
         this.portada = portada;
+        resourceBundle = ResourceBundle.getBundle("idioma");
     }
 
     public String getNombreLibro() {
@@ -71,7 +74,9 @@ public class Libro implements Comparable<Libro>, Serializable {
 
     @Override
     public String toString() {
-        return nombreLibro + " escrito por " + autorLibro.getNombrePersona() + ", publicado: " + fechaPublicacion.toString() + ", precio: " + precioLibro;
+        return nombreLibro + resourceBundle.getString("libro.escritoPor") +
+                autorLibro.getNombrePersona() + resourceBundle.getString("libro.publicado") +
+                fechaPublicacion.toString() + resourceBundle.getString("libro.precio") + precioLibro;
     }
 
     @Override

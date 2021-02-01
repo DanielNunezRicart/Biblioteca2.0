@@ -8,6 +8,7 @@ import util.Util;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 
 public class DialogoNuevoPersonaje extends JDialog {
 
@@ -33,9 +34,11 @@ public class DialogoNuevoPersonaje extends JDialog {
     private HashSet<Libro> libros;
 
     private Modelo modelo;
+    private ResourceBundle resourceBundle;
 
     public DialogoNuevoPersonaje(Modelo modelo) {
         this.modelo = modelo;
+        resourceBundle = ResourceBundle.getBundle("idioma");
         setContentPane(panel);
 
         grupoSexo = new ButtonGroup();
@@ -54,7 +57,7 @@ public class DialogoNuevoPersonaje extends JDialog {
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Añadir personaje");
+        setTitle(resourceBundle.getString("dialogoNuevoPersonaje.titulo"));
 
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
@@ -100,7 +103,7 @@ public class DialogoNuevoPersonaje extends JDialog {
     public void setLibros(HashSet<Libro> libros) {
         if (!libros.isEmpty()) {
             this.libros = libros;
-            txtLibrosSelect.setText("Libros seleccionados");
+            txtLibrosSelect.setText(resourceBundle.getString("dialogos.librosSeleccionados"));
         }
     }
 
@@ -114,7 +117,7 @@ public class DialogoNuevoPersonaje extends JDialog {
 
     private void nuevoPersonaje() {
         if (!camposIntroducidosPersonaje()) {
-            Util.mensajeError("No se han introducido todos los campos");
+            Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
         } else {
             try{
                 String nombre = cajaNombre.getText();
@@ -125,7 +128,7 @@ public class DialogoNuevoPersonaje extends JDialog {
                 Personaje personaje = new Personaje(nombre, sexo, edad, rol, libros);
                 modelo.nuevoPersonaje(personaje);
             }
-            catch (NumberFormatException nfe) { Util.mensajeError("La edad debe ser un número");}
+            catch (NumberFormatException nfe) { Util.mensajeError(resourceBundle.getString("error.numberFormatException.edad"));}
         }
     }
 

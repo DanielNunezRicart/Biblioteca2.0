@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class DialogoNuevoAutor extends JDialog {
 
@@ -30,12 +31,15 @@ public class DialogoNuevoAutor extends JDialog {
     private ButtonGroup grupo;
     private Modelo modelo;
 
+    private ResourceBundle resourceBundle;
+
     /**
      * Construye un objeto DialogoNuevoAutor
      * @param modelo Objeto de la clase Modelo en el que se guardan los autores, libros y personajes
      */
     public DialogoNuevoAutor(Modelo modelo) {
         this.modelo = modelo;
+        resourceBundle = ResourceBundle.getBundle("idioma");
         setContentPane(panel);
         grupo = new ButtonGroup();
 
@@ -52,7 +56,7 @@ public class DialogoNuevoAutor extends JDialog {
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Añadir autor");
+        setTitle(resourceBundle.getString("dialogoNuevoAutor.titulo"));
 
         configurarRadioButtons();
         configurarListeners();
@@ -104,7 +108,7 @@ public class DialogoNuevoAutor extends JDialog {
      */
     private void addAutor() {
         if (!camposIntroducidosAutor()) {
-            Util.mensajeError("No se han introducido todos los campos");
+            Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
         } else {
             String nombre = cajaNombre.getText();
             LocalDate fechaNac = datePicker.getDate();
