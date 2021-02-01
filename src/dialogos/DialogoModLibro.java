@@ -5,6 +5,7 @@ import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -73,6 +74,7 @@ public class DialogoModLibro extends JDialog {
         txtRutaImagen.setText(libro.getPortada().toString());
         cajaNombre.setText(libro.getNombreLibro());
         cboxAutores.setSelectedItem(libro.getAutorLibro());
+        datePicker.setDate(libro.getFechaPublicacion());
         cajaPrecio.setText(String.valueOf(libro.getPrecioLibro()));
         personajesOriginalesLibro = libro.getPersonajesLibro();
     }
@@ -158,31 +160,38 @@ public class DialogoModLibro extends JDialog {
      * Modifica los valores del libro en cuestión
      */
     private void modValores() {
-        ImageIcon portada = new ImageIcon(txtRutaImagen.getText());
-        String nombre = cajaNombre.getText();
-        Autor autor = (Autor) cboxAutores.getSelectedItem();
-        LocalDate fecha = datePicker.getDate();
-        Float precio = Float.parseFloat(cajaPrecio.getText());
+        if (!camposIntroducidosLibro()) {
+            Util.mensajeError("No se han introducido todos los campos");
+        } else {
+            try {
+                ImageIcon portada = new ImageIcon(txtRutaImagen.getText());
+                String nombre = cajaNombre.getText();
+                Autor autor = (Autor) cboxAutores.getSelectedItem();
+                LocalDate fecha = datePicker.getDate();
+                Float precio = Float.parseFloat(cajaPrecio.getText());
 
-        int index = modelo.getLibros().indexOf(libroAModificar);
+                int index = modelo.getLibros().indexOf(libroAModificar);
 
-        //Si alguno de los personajes se queda sin libro, lo eliminamos
-        for (Personaje p : modelo.getLibros().get(index).getPersonajesLibro()) {
-            if (!nuevosPersonajes.contains(p)) {
-                int indexP = modelo.getPersonajes().indexOf(p);
-                modelo.getPersonajes().get(indexP).getLibrosPersonaje().remove(libroAModificar);
-                if (modelo.getPersonajes().get(indexP).getLibrosPersonaje().isEmpty()) {
-                    modelo.getPersonajes().remove(p);
+                //Si alguno de los personajes se queda sin libro, lo eliminamos
+                for (Personaje p : modelo.getLibros().get(index).getPersonajesLibro()) {
+                    if (!nuevosPersonajes.contains(p)) {
+                        int indexP = modelo.getPersonajes().indexOf(p);
+                        modelo.getPersonajes().get(indexP).getLibrosPersonaje().remove(libroAModificar);
+                        if (modelo.getPersonajes().get(indexP).getLibrosPersonaje().isEmpty()) {
+                            modelo.getPersonajes().remove(p);
+                        }
+                    }
                 }
-            }
-        }
 
-        modelo.getLibros().get(index).setPortada(portada);
-        modelo.getLibros().get(index).setNombreLibro(nombre);
-        modelo.getLibros().get(index).setAutorLibro(autor);
-        modelo.getLibros().get(index).setFechaPublicacion(fecha);
-        modelo.getLibros().get(index).setPrecioLibro(precio);
-        modelo.getLibros().get(index).setPersonajesLibro(nuevosPersonajes);
+                modelo.getLibros().get(index).setPortada(portada);
+                modelo.getLibros().get(index).setNombreLibro(nombre);
+                modelo.getLibros().get(index).setAutorLibro(autor);
+                modelo.getLibros().get(index).setFechaPublicacion(fecha);
+                modelo.getLibros().get(index).setPrecioLibro(precio);
+                modelo.getLibros().get(index).setPersonajesLibro(nuevosPersonajes);
+            }
+            catch (NumberFormatException nfe) { Util.mensajeError("El precio debe ser un número");}
+        }
     }
 
     /**
@@ -190,5 +199,21 @@ public class DialogoModLibro extends JDialog {
      */
     private void cancelar() {
         dispose();
+    }
+
+    /**
+     * Comprueba que los datos del libro son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    private boolean camposIntroducidosLibro() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || datePicker.getText().isEmpty()
+                || cboxAutores.getSelectedItem() == null
+                || cajaPrecio.getText().isEmpty()
+                || txtRutaImagen.getText().equals("")) {
+            flag = false;
+        }
+        return flag;
     }
 }

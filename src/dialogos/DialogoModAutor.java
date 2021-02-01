@@ -3,6 +3,7 @@ package dialogos;
 import com.github.lgooddatepicker.components.DatePicker;
 import datos.Autor;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -116,11 +117,15 @@ public class DialogoModAutor extends JDialog {
         sexo = (rbotFemenino.isSelected()) ? "femenino" : "masculino";
         String pais = cajaPais.getText();
 
-        int index = modelo.getAutores().indexOf(autorAModificar);
-        modelo.getAutores().get(index).setNombrePersona(nombre);
-        modelo.getAutores().get(index).setSexoPersona(sexo);
-        modelo.getAutores().get(index).setFechaNacimiento(nacimiento);
-        modelo.getAutores().get(index).setPaisOrigen(pais);
+        if (!camposIntroducidosAutor()) {
+            Util.mensajeError("No se han introducido todos los campos");
+        } else {
+            int index = modelo.getAutores().indexOf(autorAModificar);
+            modelo.getAutores().get(index).setNombrePersona(nombre);
+            modelo.getAutores().get(index).setSexoPersona(sexo);
+            modelo.getAutores().get(index).setFechaNacimiento(nacimiento);
+            modelo.getAutores().get(index).setPaisOrigen(pais);
+        }
     }
 
     /**
@@ -128,5 +133,20 @@ public class DialogoModAutor extends JDialog {
      */
     private void cancelar() {
         dispose();
+    }
+
+    /**
+     * Comprueba que los datos del autor son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    public boolean camposIntroducidosAutor() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || datePicker.getText().isEmpty()
+                || cajaPais.getText().isEmpty()
+                || (!rbotMasculino.isSelected() && !rbotFemenino.isSelected())) {
+            flag = false;
+        }
+        return flag;
     }
 }

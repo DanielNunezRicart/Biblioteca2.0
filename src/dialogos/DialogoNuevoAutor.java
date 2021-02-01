@@ -99,13 +99,17 @@ public class DialogoNuevoAutor extends JDialog {
      * Método que añade un autor nuevo
      */
     private void addAutor() {
-        String nombre = cajaNombre.getText();
-        LocalDate fechaNac = datePicker.getDate();
-        String sexo = obtenerSexoPersona();
-        String pais = cajaPais.getText();
+        if (!camposIntroducidosAutor()) {
+            Util.mensajeError("No se han introducido todos los campos");
+        } else {
+            String nombre = cajaNombre.getText();
+            LocalDate fechaNac = datePicker.getDate();
+            String sexo = obtenerSexoPersona();
+            String pais = cajaPais.getText();
 
-        Autor autor = new Autor(nombre, fechaNac, sexo, pais);
-        modelo.nuevoAutor(autor);
+            Autor autor = new Autor(nombre, fechaNac, sexo, pais);
+            modelo.nuevoAutor(autor);
+        }
     }
 
     /**
@@ -122,6 +126,18 @@ public class DialogoNuevoAutor extends JDialog {
         return devolver;
     }
 
-
-
+    /**
+     * Comprueba que los datos del autor son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    public boolean camposIntroducidosAutor() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || datePicker.getText().isEmpty()
+                || cajaPais.getText().isEmpty()
+                || (!rbotMasculino.isSelected() && !rbotFemenino.isSelected())) {
+            flag = false;
+        }
+        return flag;
+    }
 }

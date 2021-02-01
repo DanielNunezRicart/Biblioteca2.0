@@ -3,6 +3,7 @@ package dialogos;
 import datos.Libro;
 import datos.Personaje;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -95,8 +96,6 @@ public class DialogoNuevoPersonaje extends JDialog {
         if (!libros.isEmpty()) {
             this.libros = libros;
             txtLibrosSelect.setText("Libros seleccionados");
-        } else {
-            txtLibrosSelect.setText("Ningún libro seleccionado");
         }
     }
 
@@ -109,13 +108,20 @@ public class DialogoNuevoPersonaje extends JDialog {
     }
 
     private void nuevoPersonaje() {
-        String nombre = cajaNombre.getText();
-        int edad = Integer.parseInt(cajaEdad.getText());
-        String sexo = obtenerSexoPersonaje();
-        String rol = obtenerRolPersonaje();
+        if (!camposIntroducidosPersonaje()) {
+            Util.mensajeError("No se han introducido todos los campos");
+        } else {
+            try{
+                String nombre = cajaNombre.getText();
+                int edad = Integer.parseInt(cajaEdad.getText());
+                String sexo = obtenerSexoPersonaje();
+                String rol = obtenerRolPersonaje();
 
-        Personaje personaje = new Personaje(nombre, sexo, edad, rol, libros);
-        modelo.nuevoPersonaje(personaje);
+                Personaje personaje = new Personaje(nombre, sexo, edad, rol, libros);
+                modelo.nuevoPersonaje(personaje);
+            }
+            catch (NumberFormatException nfe) { Util.mensajeError("La edad debe ser un número");}
+        }
     }
 
     /**
@@ -151,5 +157,21 @@ public class DialogoNuevoPersonaje extends JDialog {
      */
     private void cancelar() {
         dispose();
+    }
+
+    /**
+     * Comprueba que los datos del personaje son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    public boolean camposIntroducidosPersonaje() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || cajaEdad.getText().isEmpty()
+                || (!rbotMasculino.isSelected() && !rbotFemenino.isSelected())
+                || (!rbotProtagonista.isSelected() && !rbotSecundario.isSelected())
+                || txtLibrosSelect.getText().equals("")) {
+            flag = false;
+        }
+        return flag;
     }
 }

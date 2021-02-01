@@ -50,5 +50,4 @@ public class Util {
         Period intervalo = Period.between(nacimiento, fechaActual);
         return intervalo.getYears();
     }
-
 }

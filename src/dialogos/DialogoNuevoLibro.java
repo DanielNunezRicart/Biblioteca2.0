@@ -32,6 +32,7 @@ public class DialogoNuevoLibro extends JDialog{
     private DefaultComboBoxModel<Autor> cboxModel;
 
     private Modelo modelo;
+    private ImageIcon portada;
 
     /**
      * Constructor del diálogo
@@ -107,13 +108,38 @@ public class DialogoNuevoLibro extends JDialog{
         String nombre = cajaNombre.getText();
         Autor autor = (Autor) cboxAutores.getSelectedItem();
         LocalDate fecha = datePicker.getDate();
-        Float precio = Float.parseFloat(cajaPrecio.getText());
 
-        ImageIcon imagen = new ImageIcon(txtRutaImagen.getText());
-        ImageIcon portada = Util.escalarPortadaLibro(imagen);
+        //Con esto hacemos que si el float no es un float, cambie a false
+        try {
+            Float precio = Float.parseFloat(cajaPrecio.getText());
+            ImageIcon imagen = new ImageIcon(txtRutaImagen.getText());
+            portada = Util.escalarPortadaLibro(imagen);
 
-        Libro libro = new Libro(nombre, autor, fecha, precio, portada);
-        modelo.nuevoLibro(libro);
+            Libro libro = new Libro(nombre, autor, fecha, precio, portada);
+            if (!camposIntroducidosLibro()) {
+                Util.mensajeError("No se han introducido todos los campos");
+            } else {
+                modelo.nuevoLibro(libro);
+            }
+        }
+        catch (NumberFormatException nfe) { Util.mensajeError("El precio debe ser un número");}
+    }
+
+    /**
+     * Comprueba que los datos del libro son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    private boolean camposIntroducidosLibro() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || datePicker.getText().isEmpty()
+                || cboxAutores.getSelectedItem() == null
+                || cajaPrecio.getText().isEmpty()
+                || txtRutaImagen.getText().equals("")) {
+            flag = false;
+        }
+
+        return flag;
     }
 
     /**

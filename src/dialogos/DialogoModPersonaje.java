@@ -3,6 +3,7 @@ package dialogos;
 import datos.Libro;
 import datos.Personaje;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -135,25 +136,32 @@ public class DialogoModPersonaje extends JDialog {
      * Modifica los valores del Personaje
      */
     private void modValores() {
-        String nombre = cajaNombre.getText();
-        int edad = Integer.parseInt(cajaEdad.getText());
-        String sexo = obtenerSexoPersonaje();
-        String rol = obtenerRolPersonaje();
+        if (!camposIntroducidosPersonaje()) {
+            Util.mensajeError("No se han introducido todos los campos");
+        } else {
+            try {
+                String nombre = cajaNombre.getText();
+                int edad = Integer.parseInt(cajaEdad.getText());
+                String sexo = obtenerSexoPersonaje();
+                String rol = obtenerRolPersonaje();
 
-        //Comprobamos que si un personaje se quita de un libro, se quite también de la lista del libro
-        for (Libro libro : personajeAModificar.getLibrosPersonaje()) {
-            if (!nuevosLibros.contains(libro)) {
-                int indexL = modelo.getLibros().indexOf(libro);
-                modelo.getLibros().get(indexL).getPersonajesLibro().remove(personajeAModificar);
+                //Comprobamos que si un personaje se quita de un libro, se quite también de la lista del libro
+                for (Libro libro : personajeAModificar.getLibrosPersonaje()) {
+                    if (!nuevosLibros.contains(libro)) {
+                        int indexL = modelo.getLibros().indexOf(libro);
+                        modelo.getLibros().get(indexL).getPersonajesLibro().remove(personajeAModificar);
+                    }
+                }
+
+                int index = modelo.getPersonajes().indexOf(personajeAModificar);
+                modelo.getPersonajes().get(index).setNombrePersona(nombre);
+                modelo.getPersonajes().get(index).setEdadPersonaje(edad);
+                modelo.getPersonajes().get(index).setSexoPersona(sexo);
+                modelo.getPersonajes().get(index).setRolPersonaje(rol);
+                modelo.getPersonajes().get(index).setLibrosPersonaje(nuevosLibros);
             }
+            catch (NumberFormatException nfe) { Util.mensajeError("La edad debe ser un número");}
         }
-
-        int index = modelo.getPersonajes().indexOf(personajeAModificar);
-        modelo.getPersonajes().get(index).setNombrePersona(nombre);
-        modelo.getPersonajes().get(index).setEdadPersonaje(edad);
-        modelo.getPersonajes().get(index).setSexoPersona(sexo);
-        modelo.getPersonajes().get(index).setRolPersonaje(rol);
-        modelo.getPersonajes().get(index).setLibrosPersonaje(nuevosLibros);
     }
 
     /**
@@ -182,4 +190,20 @@ public class DialogoModPersonaje extends JDialog {
     private void cancelar() {
         dispose();
     }
+    /**
+     * Comprueba que los datos del personaje son correctos
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     */
+    public boolean camposIntroducidosPersonaje() {
+        boolean flag = true;
+        if (cajaNombre.getText().isEmpty()
+                || cajaEdad.getText().isEmpty()
+                || (!rbotMasculino.isSelected() && !rbotFemenino.isSelected())
+                || (!rbotProtagonista.isSelected() && !rbotSecundario.isSelected())
+                || txtLibrosSelect.getText().equals("")) {
+            flag = false;
+        }
+        return flag;
+    }
+
 }
