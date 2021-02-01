@@ -26,8 +26,6 @@ public class DialogoModAutor extends JDialog {
     private JPanel panelBotones;
     private JButton botAceptar;
     private JButton botCancelar;
-    private JButton buttonOK;
-    private JButton buttonCancel;
     private ButtonGroup grupo;
 
     private Modelo modelo;

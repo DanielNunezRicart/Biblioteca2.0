@@ -9,6 +9,7 @@ import util.Util;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 
 public class DialogoNuevoLibro extends JDialog{
@@ -61,6 +62,8 @@ public class DialogoNuevoLibro extends JDialog{
 
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
+
+        botPortada.setMnemonic(KeyEvent.VK_P);
 
         //Listeners de los botones aceptar y cancelar
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});

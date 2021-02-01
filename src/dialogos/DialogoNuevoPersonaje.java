@@ -59,6 +59,8 @@ public class DialogoNuevoPersonaje extends JDialog {
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
 
+        botSelecLibros.setMnemonic(KeyEvent.VK_P);
+
         asignarGruposBotones();
         crearListeners();
     }

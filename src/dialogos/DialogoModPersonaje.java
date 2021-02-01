@@ -44,6 +44,8 @@ public class DialogoModPersonaje extends JDialog {
 
         setContentPane(panel);
 
+        botSelecLibros.setMnemonic(KeyEvent.VK_P);
+
         iniciarComponentes();
         asignarGruposBotones();
         valoresPorDefecto(personajeAModificar);

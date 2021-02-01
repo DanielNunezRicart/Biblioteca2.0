@@ -64,6 +64,9 @@ public class DialogoModLibro extends JDialog {
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
 
+        botPortada.setMnemonic(KeyEvent.VK_P);
+        botPersonajes.setMnemonic(KeyEvent.VK_L);
+
         configComboBox();
         configurarListeners();
         configurarDatePicker();
