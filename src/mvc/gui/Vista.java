@@ -2,6 +2,8 @@ package mvc.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import datos.Autor;
 import datos.Libro;
@@ -25,7 +27,6 @@ public class Vista {
     JButton botGuardar;
     JButton botCargar;
     JButton botIdiomas;
-    JButton botModificarRelAutor;
     JList listaAutores;
     JList listaLibrosAutores;
     JLabel txtListaAutores;
@@ -36,7 +37,6 @@ public class Vista {
     JButton botEliminarLibro;
     JButton botEditarLibro;
     JButton botNuevoLibro;
-    JButton botModificarRelLibro;
     JLabel txtLibros;
     JLabel txtPersonajesLibro;
     JList listaLibros;
@@ -46,12 +46,12 @@ public class Vista {
     JButton botEliminarPersonaje;
     JButton botEditarPersonaje;
     JButton botNuevoPersonaje;
-    JButton botModificarRelPersonaje;
     JPanel panelDatosPersonaje;
     JLabel txtPersonajes;
     JLabel txtLibrosPersonaje;
     JList listaPersonajes;
     JList listaLibrosPersonaje;
+    JButton botGraficos;
     DefaultListModel<Autor> dlmAutores;
     DefaultListModel<Libro> dlmLibrosAutor;
     DefaultListModel<Libro> dlmLibros;
@@ -65,11 +65,18 @@ public class Vista {
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Iniciamos los componentes gráficos, creamos menús, ...
+        //Iniciamos los componentes gráficos, ...
         initLayout();
+
+        //Botón por defecto de la ventana principal
+        JRootPane rootPane = SwingUtilities.getRootPane(botNuevoAutor);
+        rootPane.setDefaultButton(botNuevoAutor);
 
         //Asignamos los modelos
         asignarModelos();
+
+        //Activamos el control por teclado
+        controlPorTeclado();
 
         frame.pack();
         frame.setVisible(true);
@@ -99,5 +106,23 @@ public class Vista {
         listaPersonajesLibro.setModel(dlmPersonajesLibro);
         listaPersonajes.setModel(dlmPersonajes);
         listaLibrosPersonaje.setModel(dlmLibrosPersonaje);
+    }
+
+    /**
+     * Define las teclas a pulsar para realizar acciones por teclado
+     */
+    private void controlPorTeclado() {
+        botGuardar.setMnemonic(KeyEvent.VK_G);
+        botCargar.setMnemonic(KeyEvent.VK_C);
+        botIdiomas.setMnemonic(KeyEvent.VK_I);
+        botGuardar.setMnemonic(KeyEvent.VK_E);
+        botEditarAutor.setMnemonic(KeyEvent.VK_Q);
+        botEliminarAutor.setMnemonic(KeyEvent.VK_W);
+        botNuevoLibro.setMnemonic(KeyEvent.VK_A);
+        botEditarLibro.setMnemonic(KeyEvent.VK_S);
+        botEliminarLibro.setMnemonic(KeyEvent.VK_D);
+        botNuevoPersonaje.setMnemonic(KeyEvent.VK_Z);
+        botEditarPersonaje.setMnemonic(KeyEvent.VK_X);
+        botEditarPersonaje.setMnemonic(KeyEvent.VK_V);
     }
 }

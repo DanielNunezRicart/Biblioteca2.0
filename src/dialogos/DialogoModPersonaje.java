@@ -96,6 +96,9 @@ public class DialogoModPersonaje extends JDialog {
         setLocationRelativeTo(null);
         setTitle("Modificar personaje");
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         configurarListeners();
     }
 

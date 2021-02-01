@@ -56,6 +56,9 @@ public class DialogoNuevoAutor extends JDialog {
         configurarRadioButtons();
         configurarListeners();
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         //Cambiamos un poco el DatePicker
         datePicker.setDateToToday();
         JButton button = datePicker.getComponentToggleCalendarButton();

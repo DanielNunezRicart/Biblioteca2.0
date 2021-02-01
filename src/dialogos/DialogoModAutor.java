@@ -68,6 +68,9 @@ public class DialogoModAutor extends JDialog {
         setLocationRelativeTo(null);
         setTitle("Modificar autor");
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         configurarRadioButtons();
         configurarListeners();
         configurarDatePicker();

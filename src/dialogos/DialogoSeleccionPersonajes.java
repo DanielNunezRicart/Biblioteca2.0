@@ -30,6 +30,9 @@ public class DialogoSeleccionPersonajes extends JDialog {
         setLocationRelativeTo(null);
         setModal(true);
 
+        JRootPane rootPane = SwingUtilities.getRootPane(buttonOK);
+        rootPane.setDefaultButton(buttonOK);
+
         cargarModelo();
         mostrarPersonajes();
 

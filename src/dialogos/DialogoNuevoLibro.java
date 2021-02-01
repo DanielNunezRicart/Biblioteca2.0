@@ -59,6 +59,9 @@ public class DialogoNuevoLibro extends JDialog{
         setTitle("Añadir libro");
         configComboBox();
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         //Listeners de los botones aceptar y cancelar
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
         botCancelar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { cancelar(); }});

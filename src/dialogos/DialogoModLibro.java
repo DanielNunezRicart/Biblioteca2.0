@@ -61,6 +61,9 @@ public class DialogoModLibro extends JDialog {
         setLocationRelativeTo(null);
         setTitle("Modificar libro");
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         configComboBox();
         configurarListeners();
         configurarDatePicker();

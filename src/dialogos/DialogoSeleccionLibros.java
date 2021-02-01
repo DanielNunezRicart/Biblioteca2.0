@@ -38,6 +38,9 @@ public class DialogoSeleccionLibros extends JDialog {
         setLocationRelativeTo(null);
         setModal(true);
 
+        JRootPane rootPane = SwingUtilities.getRootPane(buttonOK);
+        rootPane.setDefaultButton(buttonOK);
+
         cargarModelo();
         mostrarLibros();
 

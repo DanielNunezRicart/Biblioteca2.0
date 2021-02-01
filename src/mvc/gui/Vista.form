@@ -21,6 +21,7 @@
               <minimumSize width="25" height="25"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
+              <toolTipText value="Guardar datos"/>
             </properties>
           </component>
           <hspacer id="e50e5">
@@ -38,6 +39,7 @@
               <minimumSize width="25" height="25"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
+              <toolTipText value="Cargar datos"/>
             </properties>
           </component>
           <hspacer id="de24a">
@@ -52,6 +54,24 @@
               <actionCommand value="Idiomas"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
+              <toolTipText value="Cambiar idioma"/>
+            </properties>
+          </component>
+          <hspacer id="a6d94">
+            <constraints/>
+          </hspacer>
+          <hspacer id="71b82">
+            <constraints/>
+          </hspacer>
+          <component id="f51a2" class="javax.swing.JButton" binding="botGraficos">
+            <constraints/>
+            <properties>
+              <actionCommand value="Graficos"/>
+              <maximumSize width="40" height="40"/>
+              <minimumSize width="40" height="40"/>
+              <preferredSize width="40" height="40"/>
+              <text value=""/>
+              <toolTipText value="Mostrar gráficos"/>
             </properties>
           </component>
         </children>
@@ -85,6 +105,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Eliminar autor"/>
                     </properties>
                   </component>
                   <hspacer id="144b4">
@@ -110,6 +131,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Editar autor"/>
                     </properties>
                   </component>
                   <component id="d0c9e" class="javax.swing.JButton" binding="botNuevoAutor">
@@ -123,6 +145,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Nuevo autor"/>
                     </properties>
                   </component>
                   <vspacer id="12f6">
@@ -167,17 +190,6 @@
                       <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                   </vspacer>
-                  <component id="ae3b3" class="javax.swing.JButton" binding="botModificarRelAutor">
-                    <constraints>
-                      <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <actionCommand value="ModificarRelAutor"/>
-                      <preferredSize width="40" height="40"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <hspacer id="a9399">
                     <constraints>
                       <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -322,6 +334,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Eliminar libro"/>
                     </properties>
                   </component>
                   <hspacer id="2885b">
@@ -347,6 +360,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Editar libro"/>
                     </properties>
                   </component>
                   <component id="bbf30" class="javax.swing.JButton" binding="botNuevoLibro">
@@ -360,6 +374,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Nuevo libro"/>
                     </properties>
                   </component>
                   <vspacer id="39553">
@@ -404,17 +419,6 @@
                       <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                   </vspacer>
-                  <component id="afc31" class="javax.swing.JButton" binding="botModificarRelLibro">
-                    <constraints>
-                      <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <actionCommand value="ModificarRelLibro"/>
-                      <preferredSize width="40" height="40"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <hspacer id="9bf03">
                     <constraints>
                       <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -559,6 +563,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Eliminar personaje"/>
                     </properties>
                   </component>
                   <hspacer id="bbe34">
@@ -584,6 +589,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Editar personaje"/>
                     </properties>
                   </component>
                   <component id="d7cc8" class="javax.swing.JButton" binding="botNuevoPersonaje">
@@ -597,6 +603,7 @@
                       <minimumSize width="25" height="25"/>
                       <preferredSize width="40" height="40"/>
                       <text value=""/>
+                      <toolTipText value="Nuevo personaje"/>
                     </properties>
                   </component>
                   <vspacer id="49cbc">
@@ -641,17 +648,6 @@
                       <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                   </vspacer>
-                  <component id="14f97" class="javax.swing.JButton" binding="botModificarRelPersonaje">
-                    <constraints>
-                      <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <actionCommand value="ModificarRelPersonaje"/>
-                      <preferredSize width="40" height="40"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <hspacer id="d6f3b">
                     <constraints>
                       <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>

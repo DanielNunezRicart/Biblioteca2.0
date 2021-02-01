@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 /**
@@ -60,21 +61,19 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.botGuardar.addActionListener(listener);
         vista.botCargar.addActionListener(listener);
         vista.botIdiomas.addActionListener(listener);
+        vista.botGraficos.addActionListener(listener);
         //Botones Autor
         vista.botNuevoAutor.addActionListener(listener);
         vista.botEditarAutor.addActionListener(listener);
         vista.botEliminarAutor.addActionListener(listener);
-        vista.botModificarRelAutor.addActionListener(listener);
         //Botones Libro
         vista.botNuevoLibro.addActionListener(listener);
         vista.botEditarLibro.addActionListener(listener);
         vista.botEliminarLibro.addActionListener(listener);
-        vista.botModificarRelLibro.addActionListener(listener);
         //Botones Personaje
         vista.botNuevoPersonaje.addActionListener(listener);
         vista.botEditarPersonaje.addActionListener(listener);
         vista.botEliminarPersonaje.addActionListener(listener);
-        vista.botModificarRelPersonaje.addActionListener(listener);
     }
 
 
@@ -94,6 +93,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
                 case "Idiomas":
                     seleccionarIdioma();
+                    break;
+
+                case "Graficos":
+                    mostrarGraficos();
                     break;
 
                 case "NuevoAutor":
@@ -136,6 +139,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    private void mostrarGraficos() {
     }
 
     /**

@@ -56,6 +56,9 @@ public class DialogoNuevoPersonaje extends JDialog {
         setLocationRelativeTo(null);
         setTitle("Añadir personaje");
 
+        JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
+        rootPane.setDefaultButton(botAceptar);
+
         asignarGruposBotones();
         crearListeners();
     }
