@@ -111,6 +111,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 case "NuevoLibro":
                     nuevoLibro();
                     break;
+
+                case "EditarLibro":
+                    modificarLibro();
+                    break;
                     
                 case "EliminarLibro":
                     eliminarLibro();
@@ -118,6 +122,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
                 case "NuevoPersonaje":
                     nuevoPersonaje();
+                    break;
+
+                case "EditarPersonaje":
+                    modificarPersonaje();
                     break;
 
                 case "EliminarPersonaje":
@@ -128,6 +136,38 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+    }
+
+    /**
+     * Modifica un personajes seleccionado en la lista de personajes
+     */
+    private void modificarPersonaje() {
+        if (vista.listaPersonajes.isSelectionEmpty()) {
+            Util.mensajeError("No puede modificar un personaje si no lo selecciona primero");
+        } else {
+            modelo.modPersonaje((Personaje) vista.listaPersonajes.getSelectedValue());
+            vista.dlmLibrosPersonaje.clear();
+            vista.dlmPersonajesLibro.clear();
+            listarLibros();
+            listarPersonajes();
+        }
+    }
+
+    /**
+     * Modifica un libro seleccionado en la lista de libros
+     */
+    private void modificarLibro() {
+        if (vista.listaLibros.isSelectionEmpty()) {
+            Util.mensajeError("No puede modificar un libro si no lo selecciona primero");
+        } else {
+            modelo.modLibro((Libro) vista.listaLibros.getSelectedValue());
+            vista.dlmLibrosPersonaje.clear();
+            vista.dlmPersonajesLibro.clear();
+            vista.dlmLibrosAutor.clear();
+            listarAutores();
+            listarLibros();
+            listarPersonajes();
+        }
     }
 
     /**

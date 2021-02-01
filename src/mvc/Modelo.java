@@ -4,6 +4,8 @@ import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
 import dialogos.DialogoModAutor;
+import dialogos.DialogoModLibro;
+import dialogos.DialogoModPersonaje;
 import util.Util;
 
 import java.io.*;
@@ -148,8 +150,29 @@ public class Modelo {
         return existe;
     }
 
-    public void modAutor(Autor autor) {
-        DialogoModAutor d = new DialogoModAutor(this, autor);
+    /**
+     * Llama a un diálogo que modifica al autor pasado por parámetro
+     * @param autor El autor que se quiere modificar
+     */
+    public void modAutor(Autor autor) { DialogoModAutor d = new DialogoModAutor(this, autor); }
+
+    /**
+     * Llama a un diálogo que modifica el libro pasado por parámetro
+     * @param libro El libro que se quiere modificar
+     */
+    public void modLibro(Libro libro) { DialogoModLibro d = new DialogoModLibro(this, libro); }
+
+    /**
+     * Modifica el personaje pasado por parámetro llamando a un diálogo para introducir nuevos datos.
+     * Además, si el personaje se queda sin libros, se elimina.
+     * @param personaje El personaje que se quiere modificar
+     */
+    public void modPersonaje(Personaje personaje) {
+        int index = personajes.indexOf(personaje);
+        DialogoModPersonaje d = new DialogoModPersonaje(this, personaje);
+        if (personajes.get(index).getLibrosPersonaje().isEmpty()) {
+            personajes.remove(index);
+        }
     }
 
     /**

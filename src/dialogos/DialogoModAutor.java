@@ -107,7 +107,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Modifica los valores del
+     * Modifica los valores del autor
      */
     private void modValores() {
         String nombre = cajaNombre.getText();

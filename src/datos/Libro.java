@@ -71,7 +71,7 @@ public class Libro implements Comparable<Libro>, Serializable {
 
     @Override
     public String toString() {
-        return nombreLibro + ", autor: " + autorLibro.getNombrePersona() + ", publicado: " + fechaPublicacion.toString() + ", precio: " + precioLibro;
+        return nombreLibro + " escrito por " + autorLibro.getNombrePersona() + ", publicado: " + fechaPublicacion.toString() + ", precio: " + precioLibro;
     }
 
     @Override

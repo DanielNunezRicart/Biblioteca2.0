@@ -125,9 +125,9 @@ public class DialogoNuevoPersonaje extends JDialog {
     private String obtenerSexoPersonaje() {
         String sexo = "";
         if (rbotMasculino.isSelected()) {
-            sexo = "Masculino";
+            sexo = "masculino";
         } else {
-            sexo = "Femenino";
+            sexo = "femenino";
         }
         return sexo;
     }
@@ -139,9 +139,9 @@ public class DialogoNuevoPersonaje extends JDialog {
     private String obtenerRolPersonaje() {
         String rol = "";
         if (rbotProtagonista.isSelected()) {
-            rol = "Protagonista";
+            rol = "protagonista";
         } else {
-            rol = "Secundario";
+            rol = "secundario";
         }
         return rol;
     }

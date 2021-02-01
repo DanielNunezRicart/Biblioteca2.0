@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class DialogoSeleccionLibros extends JDialog {
+public class DialogoSeleccionLibros2 extends JDialog {
 
     private JPanel contentPane;
     private JButton buttonOK;
@@ -19,9 +19,9 @@ public class DialogoSeleccionLibros extends JDialog {
     private DefaultListModel<Libro> dlmLibros;
 
     private Modelo modelo;
-    private DialogoNuevoPersonaje d;
+    private DialogoModPersonaje d;
 
-    public DialogoSeleccionLibros(Modelo modelo, DialogoNuevoPersonaje d) {
+    public DialogoSeleccionLibros2(Modelo modelo, DialogoModPersonaje d) {
         this.modelo = modelo;
         this.d = d;
         iniciarComponentes();
