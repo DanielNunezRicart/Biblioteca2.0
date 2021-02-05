@@ -387,6 +387,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         if (opcion == JFileChooser.APPROVE_OPTION) {
             modelo.cargarDatos(fc.getSelectedFile());
         }
+        listarAutores();
+        listarLibros();
+        listarPersonajes();
     }
 
     /**

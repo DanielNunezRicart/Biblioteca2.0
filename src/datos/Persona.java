@@ -1,18 +1,20 @@
 package datos;
 
+import util.Util;
+
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
 public class Persona implements Comparable<Persona>, Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String nombrePersona;
     private String sexoPersona;
-    private ResourceBundle resourceBundle;
 
     public Persona(String nombrePersona, String sexoPersona) {
         this.nombrePersona = nombrePersona;
         this.sexoPersona = sexoPersona;
-        resourceBundle = ResourceBundle.getBundle("idioma");
     }
 
     public String getNombrePersona() {
@@ -33,6 +35,7 @@ public class Persona implements Comparable<Persona>, Serializable {
 
     @Override
     public String toString() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
         return nombrePersona + resourceBundle.getString("persona.sexo") + sexoPersona;
     }
 

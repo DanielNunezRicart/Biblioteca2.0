@@ -1,5 +1,7 @@
 package datos;
 
+import util.Util;
+
 import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,13 +10,14 @@ import java.util.ResourceBundle;
 
 public class Libro implements Comparable<Libro>, Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String nombreLibro;
     private Autor autorLibro;
     private LocalDate fechaPublicacion;
     private float precioLibro;
     private HashSet<Personaje> personajesLibro;
     private ImageIcon portada;
-    private ResourceBundle resourceBundle;
 
     public Libro(String nombreLibro, Autor autorLibro, LocalDate fechaPublicacion, float precioLibro, ImageIcon portada) {
         this.nombreLibro = nombreLibro;
@@ -23,7 +26,6 @@ public class Libro implements Comparable<Libro>, Serializable {
         this.precioLibro = precioLibro;
         personajesLibro = new HashSet<>();
         this.portada = portada;
-        resourceBundle = ResourceBundle.getBundle("idioma");
     }
 
     public String getNombreLibro() {
@@ -74,6 +76,7 @@ public class Libro implements Comparable<Libro>, Serializable {
 
     @Override
     public String toString() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
         return nombreLibro + resourceBundle.getString("libro.escritoPor") +
                 autorLibro.getNombrePersona() + resourceBundle.getString("libro.publicado") +
                 fechaPublicacion.toString() + resourceBundle.getString("libro.precio") + precioLibro;

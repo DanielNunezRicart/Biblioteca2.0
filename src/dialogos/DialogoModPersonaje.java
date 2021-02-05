@@ -48,8 +48,6 @@ public class DialogoModPersonaje extends JDialog {
 
         setContentPane(panel);
 
-        botSelecLibros.setMnemonic(KeyEvent.VK_P);
-
         iniciarComponentes();
         asignarGruposBotones();
         valoresPorDefecto(personajeAModificar);
@@ -105,6 +103,8 @@ public class DialogoModPersonaje extends JDialog {
         JRootPane rootPane = SwingUtilities.getRootPane(botAceptar);
         rootPane.setDefaultButton(botAceptar);
 
+        botSelecLibros.setMnemonic(KeyEvent.VK_L);
+
         configurarListeners();
     }
 
@@ -159,6 +159,14 @@ public class DialogoModPersonaje extends JDialog {
                     if (!nuevosLibros.contains(libro)) {
                         int indexL = modelo.getLibros().indexOf(libro);
                         modelo.getLibros().get(indexL).getPersonajesLibro().remove(personajeAModificar);
+                    }
+                }
+
+                //Comprobamos que se ha añadido en los nuevos libros, si hay
+                for (Libro libro : nuevosLibros) {
+                    if (!libro.getPersonajesLibro().contains(personajeAModificar)) {
+                        int indexL = modelo.getLibros().indexOf(libro);
+                        modelo.getLibros().get(indexL).anadirPersonaje(personajeAModificar);
                     }
                 }
 

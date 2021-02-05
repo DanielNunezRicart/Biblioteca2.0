@@ -78,6 +78,7 @@
               </grid>
             </constraints>
             <properties>
+              <icon value="iconos/picture.png"/>
               <text value=""/>
               <toolTipText resource-bundle="idioma" key="dialogoModLibro.selecImagen.tooltip"/>
             </properties>

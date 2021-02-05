@@ -5,15 +5,11 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class Util {
-
-    private static ResourceBundle boundleUtil = ResourceBundle.getBundle("idioma");
 
     /**
      * Muestra un JOptionPane con un mensaje de error
@@ -81,6 +77,8 @@ public class Util {
     }
 
     public static int mensajeConfirmacion(String mensaje){
-        return JOptionPane.showConfirmDialog(null, mensaje, boundleUtil.getString("util.mensajeConfirmacion.titulo"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
+        return JOptionPane.showConfirmDialog(null, mensaje, resourceBundle.getString("util.mensajeConfirmacion.titulo"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
+
 }

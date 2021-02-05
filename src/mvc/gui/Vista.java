@@ -2,7 +2,6 @@ package mvc.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
 
@@ -60,10 +59,8 @@ public class Vista {
     DefaultListModel<Personaje> dlmPersonajes;
     DefaultListModel<Libro> dlmLibrosPersonaje;
 
-    private ResourceBundle resourceBundle;
-
     public Vista() {
-        resourceBundle = ResourceBundle.getBundle("idioma");
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
 
         //Creamos el JFrame
         frame = new JFrame(resourceBundle.getString("tituloAplicacion"));
@@ -84,8 +81,8 @@ public class Vista {
         controlPorTeclado();
 
         frame.pack();
-        frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public void initLayout() {
@@ -120,7 +117,6 @@ public class Vista {
         botGuardar.setMnemonic(KeyEvent.VK_G);
         botCargar.setMnemonic(KeyEvent.VK_C);
         botIdiomas.setMnemonic(KeyEvent.VK_I);
-        botGuardar.setMnemonic(KeyEvent.VK_E);
         botEditarAutor.setMnemonic(KeyEvent.VK_Q);
         botEliminarAutor.setMnemonic(KeyEvent.VK_W);
         botNuevoLibro.setMnemonic(KeyEvent.VK_A);
@@ -129,5 +125,6 @@ public class Vista {
         botNuevoPersonaje.setMnemonic(KeyEvent.VK_Z);
         botEditarPersonaje.setMnemonic(KeyEvent.VK_X);
         botEditarPersonaje.setMnemonic(KeyEvent.VK_V);
+        botGraficos.setMnemonic(KeyEvent.VK_P);
     }
 }

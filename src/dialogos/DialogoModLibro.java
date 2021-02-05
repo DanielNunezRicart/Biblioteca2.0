@@ -177,7 +177,6 @@ public class DialogoModLibro extends JDialog {
             Util.mensajeError(resourceBundle.getString("error.todosLosCampos"));
         } else {
             try {
-                ImageIcon portada = new ImageIcon(txtRutaImagen.getText());
                 String nombre = cajaNombre.getText();
                 Autor autor = (Autor) cboxAutores.getSelectedItem();
                 LocalDate fecha = datePicker.getDate();
@@ -193,6 +192,14 @@ public class DialogoModLibro extends JDialog {
                         if (modelo.getPersonajes().get(indexP).getLibrosPersonaje().isEmpty()) {
                             modelo.getPersonajes().remove(p);
                         }
+                    }
+                }
+
+                //Comprobamos que se añade en los nuevos personajes, si los hay
+                for (Personaje personaje : nuevosPersonajes) {
+                    if (!personaje.getLibrosPersonaje().contains(libroAModificar)) {
+                        int indexP = modelo.getPersonajes().indexOf(personaje);
+                        modelo.getPersonajes().get(indexP).anadirLibro(libroAModificar);
                     }
                 }
 
