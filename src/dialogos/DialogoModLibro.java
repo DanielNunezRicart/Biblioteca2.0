@@ -40,6 +40,8 @@ public class DialogoModLibro extends JDialog {
     private HashSet<Personaje> nuevosPersonajes;
     private ImageIcon portada;
     private ResourceBundle resourceBundle;
+    private Autor autorOriginal;
+    private Autor nuevoAutor;
 
     public DialogoModLibro(Modelo modelo, Libro libro) {
         this.modelo = modelo;
@@ -47,6 +49,7 @@ public class DialogoModLibro extends JDialog {
         nuevosPersonajes = new HashSet<>();
 
         libroAModificar = libro;
+        autorOriginal = libro.getAutorLibro();
 
         setContentPane(panel);
 
@@ -84,7 +87,7 @@ public class DialogoModLibro extends JDialog {
         portada = libro.getPortada();
         txtRutaImagen.setIcon(portada);
         cajaNombre.setText(libro.getNombreLibro());
-        cboxAutores.setSelectedItem(libro.getAutorLibro());
+        cboxAutores.setSelectedItem(autorOriginal);
         datePicker.setDate(libro.getFechaPublicacion());
         cajaPrecio.setText(String.valueOf(libro.getPrecioLibro()));
         personajesOriginalesLibro = libro.getPersonajesLibro();
@@ -178,7 +181,7 @@ public class DialogoModLibro extends JDialog {
         } else {
             try {
                 String nombre = cajaNombre.getText();
-                Autor autor = (Autor) cboxAutores.getSelectedItem();
+                nuevoAutor = (Autor) cboxAutores.getSelectedItem();
                 LocalDate fecha = datePicker.getDate();
                 Float precio = Float.parseFloat(cajaPrecio.getText());
 
@@ -195,6 +198,14 @@ public class DialogoModLibro extends JDialog {
                     }
                 }
 
+                //Comprobamos que se añade en el nuevo autor y se elimina del viejo, si ocurre este cambio
+                if (!autorOriginal.equals(nuevoAutor)) {
+                    //Primero eliminamos el libro del autor original
+                    autorOriginal.getLibrosPublicados().remove(libroAModificar);
+                    //Ahora lo añadimos al nuevo autor
+                    nuevoAutor.addLibro(libroAModificar);
+                }
+
                 //Comprobamos que se añade en los nuevos personajes, si los hay
                 for (Personaje personaje : nuevosPersonajes) {
                     if (!personaje.getLibrosPersonaje().contains(libroAModificar)) {
@@ -205,7 +216,7 @@ public class DialogoModLibro extends JDialog {
 
                 modelo.getLibros().get(index).setPortada(portada);
                 modelo.getLibros().get(index).setNombreLibro(nombre);
-                modelo.getLibros().get(index).setAutorLibro(autor);
+                modelo.getLibros().get(index).setAutorLibro(nuevoAutor);
                 modelo.getLibros().get(index).setFechaPublicacion(fecha);
                 modelo.getLibros().get(index).setPrecioLibro(precio);
                 modelo.getLibros().get(index).setPersonajesLibro(nuevosPersonajes);
