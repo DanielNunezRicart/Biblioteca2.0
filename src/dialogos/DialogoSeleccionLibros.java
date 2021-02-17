@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Calse DialogoSeleccionLibros. Clase que nos permite seleccionar los libros del personaje creado.
+ */
 public class DialogoSeleccionLibros extends JDialog {
 
     private JPanel contentPane;
@@ -21,6 +24,11 @@ public class DialogoSeleccionLibros extends JDialog {
     private Modelo modelo;
     private DialogoNuevoPersonaje d;
 
+    /**
+     * Constructor de la clase. Crea el diálogo, inicia los componentes, ...
+     * @param modelo Modelo El objeto Modelo creado al iniciar la aplicación.
+     * @param d DialogoNuevoPersonaje El diálogo desde el que se ha llamado a éste y desde el que cogeremos los datos.
+     */
     public DialogoSeleccionLibros(Modelo modelo, DialogoNuevoPersonaje d) {
         this.modelo = modelo;
         this.d = d;
@@ -28,13 +36,11 @@ public class DialogoSeleccionLibros extends JDialog {
     }
 
     /**
-     * Configura la mayor parte del diálogo
+     * Configura la mayor parte del diálogo (componentes gráficos).
      */
     private void iniciarComponentes() {
         setContentPane(contentPane);
         setSize(600, 300);
-        setResizable(false);
-        setUndecorated(false);
         setLocationRelativeTo(null);
         setModal(true);
 
@@ -62,7 +68,7 @@ public class DialogoSeleccionLibros extends JDialog {
     }
 
     /**
-     * Carga los libros existentes en la lista
+     * Carga los libros existentes en la lista.
      */
     private void mostrarLibros() {
         dlmLibros.clear();
@@ -72,7 +78,7 @@ public class DialogoSeleccionLibros extends JDialog {
     }
 
     /**
-     * Se asignan los libros al personaje y se cierra la ventana al pulsar aceptar
+     * Se asignan los libros al personaje y se cierra la ventana al pulsar aceptar.
      */
     private void onOK() {
         addLibros();
@@ -80,7 +86,7 @@ public class DialogoSeleccionLibros extends JDialog {
     }
 
     /**
-     * Añade los libros seleccionados al HashSet de libros de la clase DialogoNuevoPersonaje
+     * Añade los libros seleccionados al HashSet de libros de la clase DialogoNuevoPersonaje.
      */
     private void addLibros() {
         HashSet<Libro> libros = new HashSet<>();
@@ -92,14 +98,14 @@ public class DialogoSeleccionLibros extends JDialog {
     }
 
     /**
-     * Se cierra la ventana al pulsar cancelar
+     * Se cierra la ventana al pulsar cancelar.
      */
     private void onCancel() {
         dispose();
     }
 
     /**
-     * Asigna el modelo de la lista a la lista
+     * Asigna el modelo de la lista a la lista.
      */
     private void cargarModelo() {
         dlmLibros = new DefaultListModel<>();

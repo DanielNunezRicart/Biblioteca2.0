@@ -1,17 +1,19 @@
 package dialogos;
 
 import com.github.lgooddatepicker.components.DatePicker;
-import util.Util;
 import datos.Autor;
 import mvc.Modelo;
+import util.Util;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoNuevoAutor. Crea un diálogo que nos permite crear un autor nuevo.
+ */
 public class DialogoNuevoAutor extends JDialog {
 
     private JPanel panel;
@@ -34,8 +36,8 @@ public class DialogoNuevoAutor extends JDialog {
     private ResourceBundle resourceBundle;
 
     /**
-     * Construye un objeto DialogoNuevoAutor
-     * @param modelo Objeto de la clase Modelo en el que se guardan los autores, libros y personajes
+     * Construye un objeto DialogoNuevoAutor.
+     * @param modelo Objeto de la clase Modelo en el que se guardan los autores, libros y personajes.
      */
     public DialogoNuevoAutor(Modelo modelo) {
         this.modelo = modelo;
@@ -48,12 +50,11 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Inicia los componentes de la aplicación
+     * Inicia los componentes de la aplicación.
      */
     private void iniciarComponentes() {
         //Características del diálogo
         setSize(600, 300);
-        setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoNuevoAutor.titulo"));
@@ -72,7 +73,7 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Añade los radiobuttons a un grupo y selecciona por defecto el de Masculino
+     * Añade los radiobuttons a un grupo y selecciona por defecto el de Masculino.
      */
     private void configurarRadioButtons() {
         grupo.add(rbotMasculino);
@@ -81,7 +82,7 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Crea los listeners de los botones aceptar y cancelar
+     * Crea los listeners de los botones aceptar y cancelar.
      */
     private void configurarListeners() {
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
@@ -89,7 +90,7 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Método que llama a otro para que añada el autor y cierra la ventana al pulsar acepptar
+     * Método que llama a otro para que añada el autor y cierra la ventana al pulsar aceptar.
      */
     public void aceptar() {
         addAutor();
@@ -97,14 +98,14 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Método que cierra la ventana al pulsar el botón cancelar
+     * Método que cierra la ventana al pulsar el botón cancelar.
      */
     public void cancelar() {
         dispose();
     }
 
     /**
-     * Método que añade un autor nuevo
+     * Método que añade un autor nuevo.
      */
     private void addAutor() {
         if (!camposIntroducidosAutor()) {
@@ -121,8 +122,8 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Obtiene el sexo del autor a partir de los radiobuttons Masculino y Femenino
-     * @return String Masculino o Femenino dependiendo del radiobutton seleccionado
+     * Obtiene el sexo del autor a partir de los radiobuttons Masculino y Femenino.
+     * @return String Masculino o Femenino dependiendo del radiobutton seleccionado.
      */
     private String obtenerSexoPersona() {
         String devolver = "";
@@ -135,8 +136,8 @@ public class DialogoNuevoAutor extends JDialog {
     }
 
     /**
-     * Comprueba que los datos del autor son correctos
-     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     * Comprueba que los datos del autor son correctos.
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal.
      */
     public boolean camposIntroducidosAutor() {
         boolean flag = true;

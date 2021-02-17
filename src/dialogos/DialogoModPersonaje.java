@@ -10,6 +10,9 @@ import java.awt.event.*;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoModPersonaje. Crea un diálogo que nos permite modificar los datos de un personaje.
+ */
 public class DialogoModPersonaje extends JDialog {
 
     private JPanel panel;
@@ -40,6 +43,11 @@ public class DialogoModPersonaje extends JDialog {
 
     private ResourceBundle resourceBundle;
 
+    /**
+     * Constructor de la clase. Crea el diálogo, inicia los componentes, ...
+     * @param modelo Modelo El objeto Modelo creado al iniciar la aplicación.
+     * @param personaje Personaje El personaje que queremos modificar.
+     */
     public DialogoModPersonaje(Modelo modelo, Personaje personaje) {
         this.modelo = modelo;
         resourceBundle = ResourceBundle.getBundle("idioma");
@@ -55,7 +63,7 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Asigna los radioButtons a su grupo correspondiente
+     * Asigna los radioButtons a su grupo correspondiente.
      */
     private void asignarGruposBotones() {
         grupoSexo = new ButtonGroup();
@@ -68,8 +76,8 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Método que pone por defecto los valores del personaje pasado por parámetro
-     * @param personaje El personaje del cual queremos coger los valores
+     * Método que pone por defecto los valores del personaje pasado por parámetro.
+     * @param personaje El personaje del cual queremos coger los valores.
      */
     private void valoresPorDefecto(Personaje personaje) {
         cajaNombre.setText(personaje.getNombrePersona());
@@ -91,11 +99,10 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Método que inicia los componentes gráficos de la aplicación
+     * Método que inicia los componentes gráficos de la aplicación.
      */
     private void iniciarComponentes() {
         setSize(600, 300);
-        setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoModPersonaje.titulo"));
@@ -109,7 +116,7 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Crea los listeners de los botones
+     * Crea los listeners de los botones.
      */
     private void configurarListeners() {
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
@@ -118,7 +125,7 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Crea un diálogo para seleccionar los libros a los que pertenece el personaje
+     * Crea un diálogo para seleccionar los libros a los que pertenece el personaje.
      */
     private void seleccionarLibros() {
         DialogoSeleccionLibros2 d = new DialogoSeleccionLibros2(modelo, this);
@@ -126,15 +133,15 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Método que, pasándole un HashSet de libros los sobreescribe el el existente en esta clase
-     * @param libros Los libros en los que sale el personaje
+     * Método que, pasándole un HashSet de libros los sobreescribe el el existente en esta clase.
+     * @param libros Los libros en los que sale el personaje.
      */
     public void setLibros(HashSet<Libro> libros) {
         nuevosLibros = libros;
     }
 
     /**
-     * Modifica el personaje y cierra la ventana al pulsar aceptar
+     * Modifica el personaje y cierra la ventana al pulsar aceptar.
      */
     private void aceptar() {
         modValores();
@@ -142,7 +149,7 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Modifica los valores del Personaje
+     * Modifica los valores del Personaje.
      */
     private void modValores() {
         if (!camposIntroducidosPersonaje()) {
@@ -182,8 +189,8 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Indica el sexo seleccionado
-     * @return String el sexo del personaje dependiendo del radiobutton seleccionado
+     * Indica el sexo seleccionado.
+     * @return String el sexo del personaje dependiendo del radiobutton seleccionado.
      */
     private String obtenerSexoPersonaje() {
         String sexo = "";
@@ -192,8 +199,8 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Indica el rol seleccionado
-     * @return String Protagonista o Secundario dependiendo del radiobutton seleccionado
+     * Indica el rol seleccionado.
+     * @return String Protagonista o Secundario dependiendo del radiobutton seleccionado.
      */
     private String obtenerRolPersonaje() {
         String rol = "";
@@ -202,14 +209,14 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
-     * Cierra la ventana al pulsar cancelar
+     * Cierra la ventana al pulsar cancelar.
      */
     private void cancelar() {
         dispose();
     }
     /**
-     * Comprueba que los datos del personaje son correctos
-     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     * Comprueba que los datos del personaje son correctos.
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal.
      */
     public boolean camposIntroducidosPersonaje() {
         boolean flag = true;

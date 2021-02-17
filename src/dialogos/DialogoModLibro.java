@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoModLibro. Nos permite modificar un libro.
+ */
 public class DialogoModLibro extends JDialog {
 
     private JPanel panel;
@@ -43,6 +46,11 @@ public class DialogoModLibro extends JDialog {
     private Autor autorOriginal;
     private Autor nuevoAutor;
 
+    /**
+     * Constructor de la clase. Construye el diálogo, incia los componentes, ...
+     * @param modelo Modelo El objeto Modelo creado al iniciar la aplicación.
+     * @param libro Libro El libro que queremos modificar.
+     */
     public DialogoModLibro(Modelo modelo, Libro libro) {
         this.modelo = modelo;
         resourceBundle = ResourceBundle.getBundle("idioma");
@@ -59,11 +67,10 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Método que inicia los componentes gráficos de la aplicación
+     * Método que inicia los componentes gráficos de la aplicación.
      */
     private void iniciarComponentes() {
         setSize(600, 500);
-        setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoModLibro.titulo"));
@@ -80,8 +87,8 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Método que pone por defecto los valores del libro pasado por parámetro
-     * @param libro El libro del cual queremos coger los valores
+     * Método que pone por defecto los valores del libro pasado por parámetro.
+     * @param libro El libro del cual queremos coger los valores.
      */
     private void valoresPorDefecto(Libro libro) {
         portada = libro.getPortada();
@@ -94,8 +101,8 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Devuelve los personajes actuales del libro
-     * @return HashSet<Personaje> Los personajes actuales del libro
+     * Devuelve los personajes actuales del libro.
+     * @return HashSet<Personaje> Los personajes actuales del libro.
      */
     public HashSet<Personaje> getPersonajes(){
         if (!nuevosPersonajes.isEmpty()) {
@@ -106,7 +113,7 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Método que asigna el modelo al combobox de autores y además lo rellena con los autores existentes
+     * Método que asigna el modelo al combobox de autores y además lo rellena con los autores existentes.
      */
     private void configComboBox() {
         cboxModel = new DefaultComboBoxModel<>();
@@ -118,7 +125,7 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Crea los listeners de los botones
+     * Crea los listeners de los botones.
      */
     private void configurarListeners() {
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
@@ -140,7 +147,7 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Crea un nuevo diálogo para seleccionar personajes
+     * Crea un nuevo diálogo para seleccionar personajes.
      */
     private void seleccionarPersonajes() {
         DialogoSeleccionPersonajes d = new DialogoSeleccionPersonajes(modelo, this);
@@ -148,7 +155,7 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Cambiamos el aspecto del datePicker
+     * Cambiamos el aspecto del datePicker.
      */
     private void configurarDatePicker() {
         JButton button = datePicker.getComponentToggleCalendarButton();
@@ -157,15 +164,15 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Cambia la lista de personajes actual por la pasada por parámetro
-     * @param pjs La nueva lista de personajes
+     * Cambia la lista de personajes actual por la pasada por parámetro.
+     * @param pjs La nueva lista de personajes.
      */
     public void setPersonajes(HashSet<Personaje> pjs) {
         nuevosPersonajes = pjs;
     }
 
     /**
-     * Modifica los valores y cierra la ventana al pulsar aceptar
+     * Modifica los valores y cierra la ventana al pulsar aceptar.
      */
     private void aceptar() {
         modValores();
@@ -173,7 +180,7 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Modifica los valores del libro en cuestión
+     * Modifica los valores del libro en cuestión.
      */
     private void modValores() {
         if (!camposIntroducidosLibro()) {
@@ -226,15 +233,15 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
-     * Cierra la ventana al pulsar cancelar
+     * Cierra la ventana al pulsar cancelar.
      */
     private void cancelar() {
         dispose();
     }
 
     /**
-     * Comprueba que los datos del libro son correctos
-     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     * Comprueba que los datos del libro son correctos.
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal.
      */
     private boolean camposIntroducidosLibro() {
         boolean flag = true;

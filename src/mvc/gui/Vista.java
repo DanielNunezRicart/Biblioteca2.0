@@ -10,6 +10,9 @@ import datos.Libro;
 import datos.Personaje;
 import layouts.WrapLayout;
 
+/**
+ * Clase Vista. Esta clase se ocupa del entorno gráfico de la aplicación.
+ */
 public class Vista {
 
     JFrame frame;
@@ -59,6 +62,10 @@ public class Vista {
     DefaultListModel<Personaje> dlmPersonajes;
     DefaultListModel<Libro> dlmLibrosPersonaje;
 
+    /**
+     * Constructor de la clase Vista. Se inician todos los componentes, se asignan los modelos de las listas, las especificaciones de los
+     * botones, ..., y por último, se hace visible.
+     */
     public Vista() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
 
@@ -85,6 +92,9 @@ public class Vista {
         frame.setVisible(true);
     }
 
+    /**
+     * Hace que sea posible usar el WrapLayout
+     */
     public void initLayout() {
         panelMenu.setLayout(new WrapLayout(FlowLayout.LEADING, 3, 3));
     }

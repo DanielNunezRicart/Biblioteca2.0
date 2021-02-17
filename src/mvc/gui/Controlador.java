@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * Clase Controlador
+ * Clase Controlador. Sirve de puente entre la clase Vista y la clase Modelo.
  */
 public class Controlador implements ActionListener, ListSelectionListener {
 
@@ -84,8 +84,11 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.botEliminarPersonaje.addActionListener(listener);
     }
 
-
-
+    /**
+     * Método que recoge los ActionEvent que se producen y dependiendo de el elemento en el que se hayan producido,
+     * ejecuta el método correspondiente.
+     * @param e ActionEvent El evento que se produce
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
@@ -149,6 +152,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
     }
 
+    /**
+     * Mueestra los gráficos
+     */
     private void mostrarGraficos() {
         if (!modelo.getLibros().isEmpty()) {
             DefaultPieDataset dataset = new DefaultPieDataset();
@@ -169,7 +175,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Modifica un personajes seleccionado en la lista de personajes
+     * Modifica un personaje seleccionado en la lista de personajes
      */
     private void modificarPersonaje() {
         if (vista.listaPersonajes.isSelectionEmpty()) {
@@ -372,6 +378,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
     }
 
+    /**
+     * Abre el diálogo que controla la elección del idioma
+     */
     private void seleccionarIdioma() {
         DialogoIdioma d = new DialogoIdioma();
     }

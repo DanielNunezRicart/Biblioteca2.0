@@ -6,12 +6,14 @@ import mvc.Modelo;
 import util.Util;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoModAutor. Despliega un diálogo que nos permite modificar un autor.
+ */
 public class DialogoModAutor extends JDialog {
     private JPanel panel;
     private JPanel panelDatos;
@@ -33,6 +35,11 @@ public class DialogoModAutor extends JDialog {
     private Autor autorAModificar;
     private ResourceBundle resourceBundle;
 
+    /**
+     * Constructor de la clase. Construye el diálogo, inicia los componentes, ...
+     * @param modelo Modelo El objeto modelo creado al iniciar la aplicación.
+     * @param autorAModificar Autor El autor que se quiere modificar.
+     */
     public DialogoModAutor(Modelo modelo, Autor autorAModificar) {
         this.modelo = modelo;
         this.autorAModificar = autorAModificar;
@@ -63,9 +70,11 @@ public class DialogoModAutor extends JDialog {
         cajaPais.setText(autorAModificar.getPaisOrigen());
     }
 
+    /**
+     * Inicia los componentes gráficos de la aplicación.
+     */
     private void iniciarComponentes() {
         setSize(600, 300);
-        setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoModAutor.titulo"));
@@ -79,7 +88,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Configura el datePicker
+     * Configura el datePicker.
      */
     private void configurarDatePicker() {
         datePicker.setDateToToday();
@@ -89,7 +98,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Crea los listeners de los botones aceptar y cancelar
+     * Crea los listeners de los botones aceptar y cancelar.
      */
     private void configurarListeners() {
         botAceptar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { aceptar(); }});
@@ -97,7 +106,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Añade los radiobuttons a un grupo
+     * Añade los radiobuttons a un grupo.
      */
     private void configurarRadioButtons() {
         grupo.add(rbotMasculino);
@@ -105,7 +114,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Modifica el autor con los valores actualmente seleccionados y cierra la ventana
+     * Modifica el autor con los valores actualmente seleccionados y cierra la ventana.
      */
     private void aceptar() {
         modValores();
@@ -113,7 +122,7 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Modifica los valores del autor
+     * Modifica los valores del autor por los existentes actualmente.
      */
     private void modValores() {
         String nombre = cajaNombre.getText();
@@ -141,8 +150,8 @@ public class DialogoModAutor extends JDialog {
     }
 
     /**
-     * Comprueba que los datos del autor son correctos
-     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     * Comprueba que los datos del autor son correctos.
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal.
      */
     public boolean camposIntroducidosAutor() {
         boolean flag = true;

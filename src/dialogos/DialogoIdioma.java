@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 
 import util.Util;
 
+/**
+ * Clase DialogoIdioma. Despliega un diálogo que nos permite elegir el idioma de la aplicación.
+ */
 public class DialogoIdioma extends JDialog {
 
     private JPanel contentPane;
@@ -20,6 +23,9 @@ public class DialogoIdioma extends JDialog {
     private ButtonGroup grupo;
     private ResourceBundle resourceBundle;
 
+    /**
+     * Constructor del Diálogo. Carga el ResourceBundle, inicia los componentes y demás.
+     */
     public DialogoIdioma() {
         resourceBundle = ResourceBundle.getBundle("idioma");
 
@@ -27,7 +33,6 @@ public class DialogoIdioma extends JDialog {
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoIdioma.titulo"));
-        setResizable(false);
         setSize(400, 200);
 
         grupo = new ButtonGroup();
@@ -42,6 +47,9 @@ public class DialogoIdioma extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Selecciona el radioButton correspondiente al idioma guardado en el archivo de configuración.
+     */
     private void cargarConfiguracion() {
         Properties properties = new Properties();
         try {
@@ -60,12 +68,17 @@ public class DialogoIdioma extends JDialog {
         }
     }
 
-
+    /**
+     * Añade los listeners a los botones de OK y Cancelar.
+     */
     private void listeners() {
         buttonOK.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { onOK(); }});
         buttonCancel.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent e) { onCancel(); }});
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de OK. Muestra un JDialog que nos pide confirmar y cierra el programa.
+     */
     private void onOK() {
         int opt = Util.mensajeConfirmacion(resourceBundle.getString("dialogoIdioma.reinicio"));
         if(opt == JOptionPane.YES_OPTION){
@@ -98,6 +111,9 @@ public class DialogoIdioma extends JDialog {
         catch (IOException e) { e.printStackTrace(); }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón de cancelar. Cierra la ventana.
+     */
     private void onCancel() {
         dispose();
     }

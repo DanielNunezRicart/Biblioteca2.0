@@ -1,13 +1,16 @@
 package dialogos;
 
-import datos.Libro;
 import datos.Personaje;
 import mvc.Modelo;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 
+/**
+ * Clase DialogoSeleccionPersonajes. Esta clase crea un diálogo que nos permite modifcar los personajes que aparecen en un libro.
+ */
 public class DialogoSeleccionPersonajes extends JDialog {
 
     private JPanel contentPane;
@@ -19,14 +22,17 @@ public class DialogoSeleccionPersonajes extends JDialog {
     private Modelo modelo;
     private DialogoModLibro d;
 
+    /**
+     * Constructor de la clase. Crea el diálogo, inicia los componentes, ...
+     * @param modelo Modelo El objeto Modelo que se crea al iniciar la aplicación.
+     * @param d DialogoModLibro El diálogo que llama a éste.
+     */
     public DialogoSeleccionPersonajes(Modelo modelo, DialogoModLibro d) {
         this.modelo = modelo;
         this.d = d;
 
         setContentPane(contentPane);
         setSize(600, 300);
-        setResizable(false);
-        setUndecorated(false);
         setLocationRelativeTo(null);
         setModal(true);
 
@@ -45,7 +51,7 @@ public class DialogoSeleccionPersonajes extends JDialog {
     }
 
     /**
-     * Método que carga todos los personajes en la lista
+     * Método que carga todos los personajes en la lista.
      */
     private void mostrarPersonajes() {
         dlmPersonajes.clear();
@@ -55,7 +61,7 @@ public class DialogoSeleccionPersonajes extends JDialog {
     }
 
     /**
-     * Método que cambia los personajes antiguos por los seleccionados actualmente y cierra la ventana
+     * Método que cambia los personajes antiguos por los seleccionados actualmente y cierra la ventana.
      */
     private void aceptar() {
         cambiarPersonajes();
@@ -80,12 +86,15 @@ public class DialogoSeleccionPersonajes extends JDialog {
         }
     }
 
+    /**
+     * Método que se ejecuta al pulsar el botón cancelar. Cierra la ventana.
+     */
     private void cancelar() {
         dispose();
     }
 
     /**
-     * Asigna el modelo de la lista a la lista
+     * Asigna el modelo de la lista a la lista.
      */
     private void cargarModelo() {
         dlmPersonajes = new DefaultListModel<>();

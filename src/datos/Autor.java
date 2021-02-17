@@ -1,7 +1,5 @@
 package datos;
 
-import util.Util;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -15,6 +13,13 @@ public class Autor extends Persona implements Serializable {
     private String paisOrigen;
     private HashSet<Libro> librosPublicados;
 
+    /**
+     * Constructor de la clase Autor
+     * @param nombrePersona String El nombre del autor
+     * @param fechaNacimiento LocalDate La fecha de nacimiento del autor
+     * @param sexoPersona String El sexo del autor
+     * @param paisOrigen String El país de origen del autor
+     */
     public Autor(String nombrePersona, LocalDate fechaNacimiento, String sexoPersona, String paisOrigen) {
         super(nombrePersona, sexoPersona);
         this.fechaNacimiento = fechaNacimiento;
@@ -26,26 +31,20 @@ public class Autor extends Persona implements Serializable {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
 
-    public String getPaisOrigen() {
-        return paisOrigen;
-    }
+    public String getPaisOrigen() { return paisOrigen; }
 
-    public void setPaisOrigen(String paisOrigen) {
-        this.paisOrigen = paisOrigen;
-    }
+    public void setPaisOrigen(String paisOrigen) { this.paisOrigen = paisOrigen; }
 
-    public HashSet<Libro> getLibrosPublicados() {
-        return librosPublicados;
-    }
+    public HashSet<Libro> getLibrosPublicados() { return librosPublicados; }
 
-    public void setLibrosPublicados(HashSet<Libro> librosPublicados) {
-        this.librosPublicados = librosPublicados;
-    }
+    public void setLibrosPublicados(HashSet<Libro> librosPublicados) { this.librosPublicados = librosPublicados; }
 
-    public void addLibro(Libro libro) {
-        librosPublicados.add(libro);
-    }
+    public void addLibro(Libro libro) { librosPublicados.add(libro); }
 
+    /**
+     * Método que devuelve la información del autor en forma de String
+     * @return String Todos los datos (menos la lista de libros) del autor
+     */
     @Override
     public String toString() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");

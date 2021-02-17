@@ -9,6 +9,9 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * Clase Util. Clase que sirve de soporte a las demás, es decir, en ella hay métodos que utilizan las demás clases.
+ */
 public class Util {
 
     /**
@@ -70,12 +73,21 @@ public class Util {
         return locale;
     }
 
-    public static void carpetaDatos() {File directorio = new File("data");
+    /**
+     * Método que comprueba si existe el directorio en el que se van a guardar las preferencias, y si no, lo crea
+     */
+    public static void carpetaDatos() {
+        File directorio = new File("data");
         if(!directorio.exists()) {
             directorio.mkdir();
         }
     }
 
+    /**
+     * Método que muestra un JDialog de confirmación con el mensaje pasado por parámetro.
+     * @param mensaje String El mensaje que queremos que se muestre.
+     * @return int La opción que se ha seleccionado en el JDialog.
+     */
     public static int mensajeConfirmacion(String mensaje){
         ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
         return JOptionPane.showConfirmDialog(null, mensaje, resourceBundle.getString("util.mensajeConfirmacion.titulo"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

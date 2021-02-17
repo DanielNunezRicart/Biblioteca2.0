@@ -14,6 +14,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
+/**
+ * Clase Modelo. Esta clase se ocupa de manejar los datos que se usan en la aplicación.
+ */
 public class Modelo {
 
     private ArrayList<Autor> autores;
@@ -24,7 +27,7 @@ public class Modelo {
 
     /**
      * Constructor de la clase Modelo. No necesita parámetros. Simplemente inicializa los
-     * HashSet que contienen los objetos de tipo Autor, Libro y Personaje
+     * HashSet que contienen los objetos de tipo Autor, Libro y Personaje, y el ResourceBundle
      */
     public Modelo() {
         autores = new ArrayList<>();
@@ -52,8 +55,8 @@ public class Modelo {
     /**
      * Método que carga datos previamente guardados en un fichero
      * @param file El fichero del que queremos obtener los datos
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException Ocurre si ha fallado una operación de Input/Output
+     * @throws ClassNotFoundException Ocurre cuando se intenta cargar una clase y no se encuentra
      */
     public void cargarDatos(File file) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(file);

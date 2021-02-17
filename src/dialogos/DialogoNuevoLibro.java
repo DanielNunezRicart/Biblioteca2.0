@@ -13,6 +13,9 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoNuevoLibro. Crea un diálogo que nos permite añadir un libro nuevo.
+ */
 public class DialogoNuevoLibro extends JDialog{
 
     private JPanel panel;
@@ -38,8 +41,8 @@ public class DialogoNuevoLibro extends JDialog{
     private ResourceBundle resourceBundle;
 
     /**
-     * Constructor del diálogo
-     * @param modelo Objeto Modelo que guarda todos los datos manejados
+     * Constructor del diálogo.
+     * @param modelo Objeto Modelo que guarda todos los datos manejados.
      */
     public DialogoNuevoLibro(Modelo modelo) {
         this.modelo = modelo;
@@ -51,13 +54,12 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Método que inicia los componentes gráficos de la aplicación
+     * Método que inicia los componentes gráficos de la aplicación.
      */
     private void iniciarComponentes() {
 
         //Características del JDialog
         setSize(600, 400);
-        setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoNuevoLibro.titulo"));
@@ -93,7 +95,7 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Método que asigna el modelo al combobox de autores y además lo rellena con los autores existentes
+     * Método que asigna el modelo al combobox de autores y además lo rellena con los autores existentes.
      */
     private void configComboBox() {
         cboxModel = new DefaultComboBoxModel<>();
@@ -105,7 +107,7 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Método que se ejecuta al pulsar el botón aceptar
+     * Método que se ejecuta al pulsar el botón aceptar.
      */
     public void aceptar() {
         addLibro();
@@ -113,7 +115,7 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Método que recoge los elementos seleccionados para crear un libro
+     * Método que recoge los elementos seleccionados para crear un libro.
      */
     private void addLibro() {
         String nombre = cajaNombre.getText();
@@ -135,8 +137,8 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Comprueba que los datos del libro son correctos
-     * @return boolean True si se ha introducido bien o false si se ha introducido mal
+     * Comprueba que los datos del libro son correctos.
+     * @return boolean True si se ha introducido bien o false si se ha introducido mal.
      */
     private boolean camposIntroducidosLibro() {
         boolean flag = true;
@@ -152,7 +154,7 @@ public class DialogoNuevoLibro extends JDialog{
     }
 
     /**
-     * Método que se ejecuta al pulsar el botón cancelar
+     * Método que se ejecuta al pulsar el botón cancelar. Cierra la ventana (el diálogo).
      */
     public void cancelar() {
         dispose();
