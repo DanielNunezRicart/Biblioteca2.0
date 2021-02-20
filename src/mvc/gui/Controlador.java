@@ -3,10 +3,7 @@ package mvc.gui;
 import datos.Autor;
 import datos.Libro;
 import datos.Personaje;
-import dialogos.DialogoIdioma;
-import dialogos.DialogoNuevoAutor;
-import dialogos.DialogoNuevoLibro;
-import dialogos.DialogoNuevoPersonaje;
+import dialogos.*;
 import mvc.Modelo;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -153,25 +150,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Mueestra los gráficos
+     * Crea un diálogo en el que muestra los gráficos
      */
     private void mostrarGraficos() {
-        if (!modelo.getLibros().isEmpty()) {
-            DefaultPieDataset dataset = new DefaultPieDataset();
-            for (Autor autor : modelo.getAutores()) {
-                int nLibros = autor.getLibrosPublicados().size();
-                dataset.setValue(autor.getNombrePersona(), Double.valueOf(nLibros));
-            }
-            JFreeChart diagrama = ChartFactory.createPieChart(resourceBundle.getString("grafico.titulo"), dataset,
-                    true, true, false);
-            ChartFrame frame  = new ChartFrame(resourceBundle.getString("grafico.ventana.titulo"), diagrama);
-            frame.setSize(500,500);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        } else {
-            Util.mensajeError(resourceBundle.getString("error.noDatos"));
-        }
-
+        DialogoGraficos d = new DialogoGraficos(modelo);
     }
 
     /**
