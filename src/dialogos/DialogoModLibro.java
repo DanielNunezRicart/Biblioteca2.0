@@ -70,7 +70,7 @@ public class DialogoModLibro extends JDialog {
      * Método que inicia los componentes gráficos de la aplicación.
      */
     private void iniciarComponentes() {
-        setSize(600, 500);
+        setSize(700, 400);
         setModal(true);
         setLocationRelativeTo(null);
         setTitle(resourceBundle.getString("dialogoModLibro.titulo"));
@@ -155,6 +155,21 @@ public class DialogoModLibro extends JDialog {
     }
 
     /**
+     * Devuelve un array con los índices de los personajes originales
+     * @return int[] Los índices de los personajes originales
+     */
+    public int[] getIndicesPersonajesOriginales() {
+        int[] indices = new int[personajesOriginalesLibro.size()];
+        int contador = 0;
+        for (Personaje p : personajesOriginalesLibro) {
+            int index = modelo.getPersonajes().indexOf(p);
+            indices[contador] = index;
+            contador++;
+        }
+        return indices;
+    }
+
+    /**
      * Cambiamos el aspecto del datePicker.
      */
     private void configurarDatePicker() {
@@ -191,6 +206,11 @@ public class DialogoModLibro extends JDialog {
                 nuevoAutor = (Autor) cboxAutores.getSelectedItem();
                 LocalDate fecha = datePicker.getDate();
                 Float precio = Float.parseFloat(cajaPrecio.getText());
+
+                //Comprobamos si el HashSet de los nuevos personajes está vacío, si es así le asignamos los originales
+                if (nuevosPersonajes.isEmpty()) {
+                    nuevosPersonajes = personajesOriginalesLibro;
+                }
 
                 int index = modelo.getLibros().indexOf(libroAModificar);
 

@@ -7,6 +7,7 @@ import util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -141,6 +142,21 @@ public class DialogoModPersonaje extends JDialog {
     }
 
     /**
+     * Devuelve un array con los índices de los libros que tiene asociados ese personaje originalmente.
+     * @return int[] Los índices de los libros.
+     */
+    public int[] getIndicesLibrosOriginales() {
+        int[] indices = new int[librosOriginalesPersonaje.size()];
+        int contador = 0;
+        for (Libro l : librosOriginalesPersonaje) {
+            int index = modelo.getLibros().indexOf(l);
+            indices[contador] = index;
+            contador++;
+        }
+        return indices;
+    }
+
+    /**
      * Modifica el personaje y cierra la ventana al pulsar aceptar.
      */
     private void aceptar() {
@@ -160,6 +176,11 @@ public class DialogoModPersonaje extends JDialog {
                 int edad = Integer.parseInt(cajaEdad.getText());
                 String sexo = obtenerSexoPersonaje();
                 String rol = obtenerRolPersonaje();
+
+                //Comprobamos si el HashSet de nuevos libros está vacío, si es así, le asignamos los originales
+                if (nuevosLibros.isEmpty()) {
+                    nuevosLibros = librosOriginalesPersonaje;
+                }
 
                 //Comprobamos que si un personaje se quita de un libro, se quite también de la lista del libro
                 for (Libro libro : personajeAModificar.getLibrosPersonaje()) {

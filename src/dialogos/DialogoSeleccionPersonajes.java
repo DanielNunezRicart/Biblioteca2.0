@@ -58,6 +58,7 @@ public class DialogoSeleccionPersonajes extends JDialog {
         for (Personaje personaje : modelo.getPersonajes()) {
             dlmPersonajes.addElement(personaje);
         }
+        seleccionarPersonajesOriginales();
     }
 
     /**
@@ -66,6 +67,13 @@ public class DialogoSeleccionPersonajes extends JDialog {
     private void aceptar() {
         cambiarPersonajes();
         dispose();
+    }
+
+    /**
+     * Marca como seleccionados a los personajes originales
+     */
+    private void seleccionarPersonajesOriginales() {
+        listaPersonajes.setSelectedIndices(d.getIndicesPersonajesOriginales());
     }
 
     /**

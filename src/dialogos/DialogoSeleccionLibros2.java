@@ -68,6 +68,13 @@ public class DialogoSeleccionLibros2 extends JDialog {
     }
 
     /**
+     * Marca los libros que ya tenía ese personaje
+     */
+    private void seleccionarLibrosOriginales() {
+        listaLibros.setSelectedIndices(d.getIndicesLibrosOriginales());
+    }
+
+    /**
      * Carga los libros existentes en la lista.
      */
     private void mostrarLibros() {
@@ -75,6 +82,7 @@ public class DialogoSeleccionLibros2 extends JDialog {
         for (Libro libro : modelo.getLibros()) {
             dlmLibros.addElement(libro);
         }
+        seleccionarLibrosOriginales();
     }
 
     /**
