@@ -18,6 +18,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Clase DialogoGraficos. Se encarga de mostrar los dos gráficos disponibles actualmente en la aplicación.
+ */
 public class DialogoGraficos extends JDialog {
 
     private JPanel panel;

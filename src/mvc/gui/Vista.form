@@ -76,6 +76,22 @@
               <toolTipText resource-bundle="idioma" key="principal.botonGraficos.tooltip"/>
             </properties>
           </component>
+          <hspacer id="b1b8c">
+            <constraints/>
+          </hspacer>
+          <hspacer id="44f37">
+            <constraints/>
+          </hspacer>
+          <component id="ae411" class="javax.swing.JButton" binding="botInformes">
+            <constraints/>
+            <properties>
+              <actionCommand value="Informes"/>
+              <maximumSize width="40" height="40"/>
+              <minimumSize width="40" height="40"/>
+              <preferredSize width="40" height="40"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <tabbedpane id="9785b" binding="pestaPanel">

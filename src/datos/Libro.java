@@ -1,7 +1,5 @@
 package datos;
 
-import util.Util;
-
 import javax.swing.*;
 import java.io.Serializable;
 import java.time.LocalDate;

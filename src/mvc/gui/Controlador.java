@@ -5,10 +5,6 @@ import datos.Libro;
 import datos.Personaje;
 import dialogos.*;
 import mvc.Modelo;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
 import util.Util;
 
 import javax.swing.*;
@@ -67,6 +63,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.botCargar.addActionListener(listener);
         vista.botIdiomas.addActionListener(listener);
         vista.botGraficos.addActionListener(listener);
+        vista.botInformes.addActionListener(listener);
         //Botones Autor
         vista.botNuevoAutor.addActionListener(listener);
         vista.botEditarAutor.addActionListener(listener);
@@ -84,7 +81,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     /**
      * Método que recoge los ActionEvent que se producen y dependiendo de el elemento en el que se hayan producido,
      * ejecuta el método correspondiente.
-     * @param e ActionEvent El evento que se produce
+     * @param e ActionEvent El evento que se produce.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,6 +102,10 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
                 case "Graficos":
                     mostrarGraficos();
+                    break;
+
+                case "Informes":
+                    mostrarInformes();
                     break;
 
                 case "NuevoAutor":
@@ -157,7 +158,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Modifica un personaje seleccionado en la lista de personajes
+     * Modifica un personaje seleccionado en la lista de personajes.
      */
     private void modificarPersonaje() {
         if (vista.listaPersonajes.isSelectionEmpty()) {
@@ -172,7 +173,14 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Modifica un libro seleccionado en la lista de libros
+     * Despliega un diálogo que muestra los informes.
+     */
+    private void mostrarInformes() {
+        DialogoInformes d = new DialogoInformes(modelo);
+    }
+
+    /**
+     * Modifica un libro seleccionado en la lista de libros.
      */
     private void modificarLibro() {
         if (vista.listaLibros.isSelectionEmpty()) {

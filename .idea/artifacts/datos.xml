@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="datos">
+    <output-path>$PROJECT_DIR$/out/artifacts/datos</output-path>
+    <root id="archive" name="datos.jar">
+      <element id="directory" name="datos">
+        <element id="file-copy" path="$PROJECT_DIR$/out/production/Biblioteca2/datos/Autor.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/out/production/Biblioteca2/datos/Libro.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/out/production/Biblioteca2/datos/Persona.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/out/production/Biblioteca2/datos/Personaje.class" />
+      </element>
+    </root>
+  </artifact>
+</component>

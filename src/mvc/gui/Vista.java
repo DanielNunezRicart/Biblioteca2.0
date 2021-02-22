@@ -55,6 +55,7 @@ public class Vista {
     JList listaPersonajes;
     JList listaLibrosPersonaje;
     JButton botGraficos;
+    JButton botInformes;
     DefaultListModel<Autor> dlmAutores;
     DefaultListModel<Libro> dlmLibrosAutor;
     DefaultListModel<Libro> dlmLibros;
@@ -136,5 +137,6 @@ public class Vista {
         botEditarPersonaje.setMnemonic(KeyEvent.VK_X);
         botEditarPersonaje.setMnemonic(KeyEvent.VK_V);
         botGraficos.setMnemonic(KeyEvent.VK_P);
+        botInformes.setMnemonic(KeyEvent.VK_R);
     }
 }
