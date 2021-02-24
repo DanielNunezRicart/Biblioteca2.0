@@ -82,14 +82,52 @@
           <hspacer id="44f37">
             <constraints/>
           </hspacer>
-          <component id="ae411" class="javax.swing.JButton" binding="botInformes">
+          <component id="eeb0a" class="javax.swing.JButton" binding="botInformeAutores">
             <constraints/>
             <properties>
-              <actionCommand value="Informes"/>
+              <actionCommand value="InformeAutores"/>
+              <icon value="iconos/document.png"/>
               <maximumSize width="40" height="40"/>
               <minimumSize width="40" height="40"/>
               <preferredSize width="40" height="40"/>
               <text value=""/>
+              <toolTipText resource-bundle="idioma" key="principal.botonInformes.tooltip"/>
+            </properties>
+          </component>
+          <hspacer id="c8ae5">
+            <constraints/>
+          </hspacer>
+          <hspacer id="99c61">
+            <constraints/>
+          </hspacer>
+          <component id="b1fe2" class="javax.swing.JButton" binding="botInformeLibros">
+            <constraints/>
+            <properties>
+              <actionCommand value="InformeLibros"/>
+              <icon value="iconos/report.png"/>
+              <maximumSize width="40" height="40"/>
+              <minimumSize width="40" height="40"/>
+              <preferredSize width="40" height="40"/>
+              <text value=""/>
+              <toolTipText resource-bundle="idioma" key="principal.botonInformes.tooltip"/>
+            </properties>
+          </component>
+          <hspacer id="80650">
+            <constraints/>
+          </hspacer>
+          <hspacer id="9c3ad">
+            <constraints/>
+          </hspacer>
+          <component id="e06d7" class="javax.swing.JButton" binding="botAyuda">
+            <constraints/>
+            <properties>
+              <actionCommand value="Ayuda"/>
+              <icon value="iconos/question.png"/>
+              <maximumSize width="40" height="40"/>
+              <minimumSize width="40" height="40"/>
+              <preferredSize width="40" height="40"/>
+              <text value=""/>
+              <toolTipText resource-bundle="idioma" key="principal.botonAyuda.tooltip"/>
             </properties>
           </component>
         </children>

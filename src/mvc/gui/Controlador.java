@@ -5,14 +5,25 @@ import datos.Libro;
 import datos.Personaje;
 import dialogos.*;
 import mvc.Modelo;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import util.Util;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -63,7 +74,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.botCargar.addActionListener(listener);
         vista.botIdiomas.addActionListener(listener);
         vista.botGraficos.addActionListener(listener);
-        vista.botInformes.addActionListener(listener);
+        vista.botInformeAutores.addActionListener(listener);
+        vista.botInformeLibros.addActionListener(listener);
+        vista.botAyuda.addActionListener(listener);
         //Botones Autor
         vista.botNuevoAutor.addActionListener(listener);
         vista.botEditarAutor.addActionListener(listener);
@@ -104,8 +117,16 @@ public class Controlador implements ActionListener, ListSelectionListener {
                     mostrarGraficos();
                     break;
 
-                case "Informes":
-                    mostrarInformes();
+                case "InformeAutores":
+                    mostrarInformeAutores();
+                    break;
+
+                case "InformeLibros":
+                    mostrarInformeLibros();
+                    break;
+
+                case "Ayuda":
+                    ayuda();
                     break;
 
                 case "NuevoAutor":
@@ -148,6 +169,14 @@ public class Controlador implements ActionListener, ListSelectionListener {
 
         catch (IOException ioe) { ioe.printStackTrace(); }
         catch (ClassNotFoundException cnfe) { cnfe.printStackTrace(); }
+        catch (URISyntaxException urie) { urie.printStackTrace(); }
+    }
+
+    /**
+     * Abre el navegador de internet y nos lleva a la wiki del proyecto, en la que se encuantran los manuales de uso.
+     */
+    private void ayuda() throws URISyntaxException, IOException {
+        Desktop.getDesktop().browse(new URI("https://github.com/DanielNunezRicart/Biblioteca2.0/wiki"));
     }
 
     /**
@@ -173,10 +202,57 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Despliega un diálogo que muestra los informes.
+     * Muestra el informe referente a los objetos tipo Autor
      */
-    private void mostrarInformes() {
-        DialogoInformes d = new DialogoInformes(modelo);
+    private void mostrarInformeAutores() {
+        try {
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("/InformeAutores.jasper"));
+            //Comprobamos que no hay ningún valor nulo
+            ArrayList<Autor> autores = new ArrayList<>();
+            for (Autor a : modelo.getAutores()) {
+                if (a != null) {
+                    autores.add(a);
+                }
+            }
+            JRBeanCollectionDataSource datos = new JRBeanCollectionDataSource(autores);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, null, datos);
+            JRViewer visor = new JRViewer(jasperPrint);
+
+            //Mostramos el informe en una ventana nueva
+            JDialog dialog = new JDialog();
+            dialog.getContentPane().add(visor);
+            dialog.setSize(1000, 1200);
+            dialog.setVisible(true);
+        }
+
+        catch (JRException e) { Util.mensajeError("Ha habido un problema con el informe."); }
+    }
+
+    /**
+     * Muestra el informe referente a los objetos tipo Libro
+     */
+    private void mostrarInformeLibros() {
+        try {
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("/InformeLibros.jasper"));
+            //Comprobamos que no hay ningún valor nulo
+            ArrayList<Libro> libros = new ArrayList<>();
+            for (Libro l : modelo.getLibros()) {
+                if (l != null) {
+                    libros.add(l);
+                }
+            }
+            JRBeanCollectionDataSource datos = new JRBeanCollectionDataSource(libros);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, null, datos);
+            JRViewer visor = new JRViewer(jasperPrint);
+
+            //Mostramos el informe en una ventana nueva
+            JDialog dialog = new JDialog();
+            dialog.getContentPane().add(visor);
+            dialog.setSize(1000, 1200);
+            dialog.setVisible(true);
+        }
+
+        catch (JRException e) { Util.mensajeError("Ha habido un problema con el informe."); }
     }
 
     /**

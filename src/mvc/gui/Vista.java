@@ -55,7 +55,9 @@ public class Vista {
     JList listaPersonajes;
     JList listaLibrosPersonaje;
     JButton botGraficos;
-    JButton botInformes;
+    JButton botInformeAutores;
+    JButton botInformeLibros;
+    JButton botAyuda;
     DefaultListModel<Autor> dlmAutores;
     DefaultListModel<Libro> dlmLibrosAutor;
     DefaultListModel<Libro> dlmLibros;
@@ -68,10 +70,8 @@ public class Vista {
      * botones, ..., y por último, se hace visible.
      */
     public Vista() {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("idioma");
-
         //Creamos el JFrame
-        frame = new JFrame(resourceBundle.getString("tituloAplicacion"));
+        frame = new JFrame(ResourceBundle.getBundle("idioma").getString("tituloAplicacion"));
         frame.setContentPane(panelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -135,8 +135,10 @@ public class Vista {
         botEliminarLibro.setMnemonic(KeyEvent.VK_D);
         botNuevoPersonaje.setMnemonic(KeyEvent.VK_Z);
         botEditarPersonaje.setMnemonic(KeyEvent.VK_X);
-        botEditarPersonaje.setMnemonic(KeyEvent.VK_V);
+        botEliminarPersonaje.setMnemonic(KeyEvent.VK_V);
         botGraficos.setMnemonic(KeyEvent.VK_P);
-        botInformes.setMnemonic(KeyEvent.VK_R);
+        botInformeAutores.setMnemonic(KeyEvent.VK_R);
+        botInformeLibros.setMnemonic(KeyEvent.VK_T);
+        botAyuda.setMnemonic(KeyEvent.VK_H);
     }
 }
