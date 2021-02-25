@@ -46,6 +46,8 @@ public class DialogoModLibro extends JDialog {
     private Autor autorOriginal;
     private Autor nuevoAutor;
 
+    private boolean personajesModificados;
+
     /**
      * Constructor de la clase. Construye el diálogo, incia los componentes, ...
      * @param modelo Modelo El objeto Modelo creado al iniciar la aplicación.
@@ -55,6 +57,7 @@ public class DialogoModLibro extends JDialog {
         this.modelo = modelo;
         resourceBundle = ResourceBundle.getBundle("idioma");
         nuevosPersonajes = new HashSet<>();
+        personajesModificados = false;
 
         libroAModificar = libro;
         autorOriginal = libro.getAutorLibro();
@@ -150,6 +153,7 @@ public class DialogoModLibro extends JDialog {
      * Crea un nuevo diálogo para seleccionar personajes.
      */
     private void seleccionarPersonajes() {
+        personajesModificados = true;
         DialogoSeleccionPersonajes d = new DialogoSeleccionPersonajes(modelo, this);
         txtPersonajes.setText(resourceBundle.getString("dialogos.personajesSeleccionados"));
     }
@@ -207,8 +211,11 @@ public class DialogoModLibro extends JDialog {
                 LocalDate fecha = datePicker.getDate();
                 Float precio = Float.parseFloat(cajaPrecio.getText());
 
-                //Comprobamos si el HashSet de los nuevos personajes está vacío, si es así le asignamos los originales
-                if (nuevosPersonajes.isEmpty()) {
+                /*
+                 * Comprobamos que, si la lista está vacía, y los personajes no han sido modificados, le asigne los valores originales.
+                 * De lo contrario la lista se quedará vacía, ya que interpretamos que ha sido modificada así a posta.
+                 */
+                if (nuevosPersonajes.isEmpty() && !personajesModificados) {
                     nuevosPersonajes = personajesOriginalesLibro;
                 }
 
@@ -255,9 +262,7 @@ public class DialogoModLibro extends JDialog {
     /**
      * Cierra la ventana al pulsar cancelar.
      */
-    private void cancelar() {
-        dispose();
-    }
+    private void cancelar() { dispose(); }
 
     /**
      * Comprueba que los datos del libro son correctos.

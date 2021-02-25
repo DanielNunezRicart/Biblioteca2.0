@@ -42,6 +42,8 @@ public class DialogoModPersonaje extends JDialog {
     private HashSet<Libro> librosOriginalesPersonaje;
     private HashSet<Libro> nuevosLibros;
 
+    private boolean librosModificados;
+
     private ResourceBundle resourceBundle;
 
     /**
@@ -54,6 +56,7 @@ public class DialogoModPersonaje extends JDialog {
         resourceBundle = ResourceBundle.getBundle("idioma");
         personajeAModificar = personaje;
         nuevosLibros = new HashSet<>();
+        librosModificados = false;
 
         setContentPane(panel);
 
@@ -129,6 +132,7 @@ public class DialogoModPersonaje extends JDialog {
      * Crea un diálogo para seleccionar los libros a los que pertenece el personaje.
      */
     private void seleccionarLibros() {
+        librosModificados = true;
         DialogoSeleccionLibros2 d = new DialogoSeleccionLibros2(modelo, this);
         txtLibrosSelect.setText(resourceBundle.getString("dialogos.librosSeleccionados"));
     }
@@ -177,8 +181,11 @@ public class DialogoModPersonaje extends JDialog {
                 String sexo = obtenerSexoPersonaje();
                 String rol = obtenerRolPersonaje();
 
-                //Comprobamos si el HashSet de nuevos libros está vacío, si es así, le asignamos los originales
-                if (nuevosLibros.isEmpty()) {
+                /*
+                 * Comprobamos que, si la lista está vacía, y los libros no han sido modificados, le asigne los valores originales.
+                 * De lo contrario la lista se quedará vacía, ya que interpretamos que ha sido modificada así a posta.
+                 */
+                if (nuevosLibros.isEmpty() && !librosModificados) {
                     nuevosLibros = librosOriginalesPersonaje;
                 }
 
